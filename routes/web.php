@@ -19,7 +19,7 @@ use App\Http\Controllers\LoginController;
 //     return view('welcome');
 // });
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/loginAuth', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');

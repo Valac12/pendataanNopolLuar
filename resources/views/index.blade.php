@@ -38,7 +38,7 @@
                      @endif
                   </div>
                 </div>
-                <form action="/login" method="post" class="signin-form">
+                <form action="/loginAuth" method="post" class="signin-form">
                   @csrf
                   <div class="form-group mt-3">
                     <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" required autofocus/>

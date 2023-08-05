@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
           searchBox = document.querySelector('.search-box'),
           searchClose = document.querySelector('.dismiss');
 
-    if (navBar) {
-        searchBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            searchBox.classList.add('fadedIn');
-        });
+    // if (navBar) {
+    //     searchBtn.addEventListener('click', (e) => {
+    //         e.preventDefault();
+    //         searchBox.classList.add('fadedIn');
+    //     });
 
-        searchClose.addEventListener('click', () => searchBox.classList.remove('fadedIn'));
-    }
+    //     searchClose.addEventListener('click', () => searchBox.classList.remove('fadedIn'));
+    // }
 
 
 

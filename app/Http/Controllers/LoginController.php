@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -21,11 +23,25 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        $username = $request->username;
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if (auth()->user()->level === '1') {
+            if (auth()->user()->level === '1' &&  auth()->user()->username === $username) {
+                $dt = Carbon::now();
+                $dateNow = $dt->toDateTimeString();
+                $data = User::where('username', $username)->update([
+                    'tgl_login' => $dateNow,
+                    'online_offline' => 'Online'
+                ]);
                 return redirect()->intended('/dashboard');
-            } elseif (auth()->user()->level === '2') {
+            } elseif (auth()->user()->level === '2' &&  auth()->user()->username === $username) {
+                $dt = Carbon::now();
+                $dateNow = $dt->toDateTimeString();
+                $data = User::where('username', $username)->update([
+                    'tgl_login' => $dateNow,
+                    'online_offline' => 'Online'
+                ]);
                 return redirect()->intended('/user');
             }
         }
@@ -34,10 +50,20 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        // tgl dan waktu Logout
+        $dt = Carbon::now();
+        $dateNow = $dt->toDateTimeString();
+        $user = auth()->user()->id;
+        $data = User::find($user);
+        $data->tgl_logout = $dateNow;
+        $data->online_offline = 'Offline';
+        $data->save();
 
+        // hapus session
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+        dd($dateNow);
     }
 }
