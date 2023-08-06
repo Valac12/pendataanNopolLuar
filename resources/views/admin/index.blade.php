@@ -43,7 +43,18 @@
                 <td>{{ $ua->tgl_login }}</td>
                 <td>{{ $ua->tgl_logout }}</td>
                 <td>{{ $ua->created_at }}</td>
-                <td>Edit | Delete</td>
+                <td>
+                  <button class="badge bg-warning border-0">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#edit-window-1"> </use>
+                        </svg>
+                    </button>
+                    <button class="badge bg-danger border-0">
+                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                            <use xlink:href="#bin-1"> </use>
+                        </svg>
+                    </button>
+                </td>
             </tr>
             @endforeach
  </div>

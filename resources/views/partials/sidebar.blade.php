@@ -25,8 +25,13 @@
             <li>
               <a class="sidebar-link" href="/kelolaAdmin"><svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
                 <use xlink:href="#user-details-1"></use>
-              </svg> Admin </a></li>
-            <li><a class="sidebar-link" href="#">Page</a></li>
+              </svg> Admin </a>
+            </li>
+            <li>
+              <a class="sidebar-link" href="/kelolaKodePlat"><svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+                <use xlink:href="#certificate-1"></use>
+              </svg> Kode Plat </a>
+            </li>
           </ul>
         </li>
       <li class="sidebar-item"><a class="sidebar-link" href="tables.html"> 

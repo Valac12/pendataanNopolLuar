@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\KodePlatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::resource('/kelolaAdmin', AdminController::class)->middleware('auth');
 Route::resource('/kelolaUsers', UsersController::class)->middleware('auth');
+Route::resource('/kelolaKodePlat', KodePlatController::class)->middleware('auth');
