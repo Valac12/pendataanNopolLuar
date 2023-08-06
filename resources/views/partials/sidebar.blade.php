@@ -8,17 +8,24 @@
     </div>
     <!-- Sidebar Navidation Menus--><span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Main</span>
     <ul class="list-unstyled py-4">
-      <li class="sidebar-item active"><a class="sidebar-link" href="index.html"> 
+      <li class="sidebar-item active"><a class="sidebar-link" href="/dashboard"> 
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#real-estate-1"> </use>
-          </svg>Home </a></li>
+          </svg>Home</a></li>
           <li class="sidebar-item"><a class="sidebar-link" href="#exampledropdownDropdown" data-bs-toggle="collapse"> 
             <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-              <use xlink:href="#browser-window-1"> </use>
-            </svg>Example dropdown </a>
+              <use xlink:href="#chart-1"> </use>
+            </svg>Kelola Data </a>
           <ul class="collapse list-unstyled " id="exampledropdownDropdown">
-            <li><a class="sidebar-link" href="#">Page</a></li>
-            <li><a class="sidebar-link" href="#">Page</a></li>
+            <li>
+              <a class="sidebar-link" href="/kelolaUsers"><svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+                <use xlink:href="#user-1"></use>
+              </svg> User </a>
+            </li>
+            <li>
+              <a class="sidebar-link" href="/kelolaAdmin"><svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+                <use xlink:href="#user-details-1"></use>
+              </svg> Admin </a></li>
             <li><a class="sidebar-link" href="#">Page</a></li>
           </ul>
         </li>

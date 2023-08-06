@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class AdminController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.index', [
-            'tittle' => 'Kelola Admin',
-            'userAdmin' => User::where('level', '1')->get()
+        return view('user.index', [
+            'tittle' => 'Kelola Users',
+            'userAdmin' => User::where('level', '2')->get()
         ]);
     }
 

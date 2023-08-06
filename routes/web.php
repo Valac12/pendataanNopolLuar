@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +24,6 @@ Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('g
 Route::post('/loginAuth', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
-Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::resource('/kelolaAdmin', AdminController::class)->middleware('auth');
+Route::resource('/kelolaUsers', UsersController::class)->middleware('auth');

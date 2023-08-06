@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
+    {{-- DataTables --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -41,6 +45,15 @@
     <script src="vendor/just-validate/js/just-validate.min.js"></script>
     <script src="vendor/choices.js/public/assets/scripts/choices.min.js"></script>
     <script src="js/charts-home.js"></script>
+    {{-- DataTables --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
@@ -65,9 +78,20 @@
       // inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
       // while using file:// protocol
       // pls don't forget to change to your domain :)
-      injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+      injectSvgSprite('icons-orion.svg'); 
       
       
+    </script>
+    <script>
+      // new DataTable('#example');
+      $(document).ready(function() {
+      $('#example').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
+    } );
     </script>
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
