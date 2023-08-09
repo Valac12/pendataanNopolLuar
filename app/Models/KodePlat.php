@@ -13,4 +13,10 @@ class KodePlat extends Model
         'kode_plat',
         'warna_plat'
     ];
+
+    // public function nopolLuar()
+    // {
+    //     return $this->hasMany(NopolLuar::class);
+    // }
+
 }

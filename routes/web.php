@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\KodePlatController;
+use App\Http\Controllers\NopolKeluarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,4 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 Route::resource('/kelolaAdmin', AdminController::class)->middleware('auth');
 Route::resource('/kelolaUsers', UsersController::class)->middleware('auth');
 Route::resource('/kelolaKodePlat', KodePlatController::class)->middleware('auth');
+Route::resource('/pendataanNopol', NopolKeluarController::class)->middleware('auth');

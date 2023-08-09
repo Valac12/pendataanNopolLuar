@@ -31,7 +31,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'required|min:4',
+            'level' => 'required',
+            'nama_level' => 'required',
+            'online_offline' => 'required'
+        ]);
+
+        $validate['password'] = bcrypt($validate['password']);
+
+        User::create($validate, ['tgl_login' => null, 'tgl_logout' => null]);
+        session()->flash('successCreateAdmin', 'Admin Berhasil Ditambahkan!');
+        return redirect('/kelolaAdmin');
     }
 
     /**
@@ -63,6 +76,8 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::destroy($id);
+        session()->flash('successDelAdmin', 'Admin berhasil dihapus!');
+        return redirect('/kelolaAdmin');
     }
 }

@@ -32,13 +32,13 @@
       <div class="page-content d-flex align-items-stretch"> 
         <!-- Side Navbar -->
         @include('partials.sidebar')
-        <div class="content-inner w-100">
+        <div class="content-inner w-100 bg-white sm">
             @yield('content')
-          <!-- Page Footer-->
-          @include('partials.footer')
+            <!-- Page Footer-->
+            @include('partials.footer')
+          </div>
         </div>
       </div>
-    </div>
     <!-- JavaScript files-->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/chart.js/Chart.min.js"></script>
@@ -54,6 +54,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
@@ -85,12 +86,27 @@
     <script>
       // new DataTable('#example');
       $(document).ready(function() {
-      $('#example').DataTable( {
+      var table = $('#example').DataTable( {
+          lengthChange: false,
+          responsive: true,
           dom: 'Bfrtip',
           buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
+            {
+            extend: 'copy',
+            text: 'Copy to clipboard'
+            },
+            {
+              extend: 'print',
+              filename: 'Report',
+              title: 'Bappenda',
+              messageTop: 'Badan Pendapatan Provinsi Jayapura'
+            },
+            'excel',
+            'pdf',
             ]
-        } );
+          });
+          table.buttons().container()
+         .appendTo( '#example_wrapper .col-md-6:eq(0)' );  
     } );
     </script>
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->

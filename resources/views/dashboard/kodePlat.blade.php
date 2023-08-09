@@ -16,22 +16,42 @@
        </ol>
      </nav>
    </div>
-     <div class="d-flex justify-content-end px-4 py-2">
-        <button class="btn btn-primary btn-md border-3" type="button" title="Tambah Data" data-bs-toggle="modal" data-bs-target="#modalPlat">+</button>
-    </div>
  </div>
 
-<div class="container px-3 py-2">
-    @if(session()->has('success'))
+ {{-- alert berhasil ditambahkan --}}
+ @if(session()->has('successCreateKp'))
+<div class="container-fluid py-2">
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ session('success') }}
+    {{ session('successCreateKp') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    @endif
+  </div>
+@endif
+{{-- alert berhasil dihapus --}}
+ @if(session()->has('successDelKp'))
+<div class="container-fluid py-2">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ session('successDelKp') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+@endif
+
+{{-- notifikasi validasi --}}
+@if ($errors->any())
+<div class="container-fluid py-2">
+  <div class="alert alert-danger alert-dismissible dafe show" role="alert">
+    Input data gagal, cek form tambah data!   
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 </div>
+@endif
  
- <div class="container">
-  <div class="card-body px-3 py-2">
+ <div class="container-fluid w-100">
+  <div class="d-flex justify-content-end py-2">
+    <button class="btn btn-primary btn-md border-3" type="button" title="Tambah Data" data-bs-toggle="modal" data-bs-target="#modalPlat">+</button>
+  </div>
+  <div class="card-body py-2">
   <table id="example" class="display nowrap" style="width:100%">
         <thead>
             <tr>
@@ -67,8 +87,9 @@
                     </button>
                     </form>
                 </td>
-            @endforeach
-            </tr>
+              </tr>
+              @endforeach
+            </table>
  </div>
  </div>
 
@@ -81,18 +102,28 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/kelolaKodePlat" method="post">
+        <form action="/kelolaKodePlat" method="post" class="was validated needs-validation" novalidate>
             @csrf
-            <div class="mb-3 row">
+            <div class="mb-3 row position-relative">
                 <label for="KodePlat" class="col-sm-2 col-form-label">Kode Plat</label>
                 <div class="col-sm-10">
-                <input type="number" class="form-control" name="kode_plat" id="KodePlat" placeholder="001" autofocus required>
+                <input type="number" class="form-control @error('kode_plat') is-invalid @enderror" name="kode_plat" id="KodePlat" placeholder="001" autofocus required>
+                @error('kode_plat')
+                <div class="invalid-feedback ">
+                  {{ $message }}
+                </div>
+                @enderror
                 </div>
             </div>
-            <div class="mb-3 row">
+            <div class="mb-3 row position-relative">
                 <label for="WarnaPlat" class="col-sm-2 col-form-label">Warna Plat</label>
                 <div class="col-sm-10">
-                <input type="text" class="form-control" name="warna_plat" id="WarnaPlat" placeholder="hitam" required>
+                <input type="text" class="form-control @error('warna_plat') is-invalid @enderror" name="warna_plat" id="WarnaPlat" placeholder="hitam" required>
+                @error('warna_plat')
+                <div class="invalid-feedback ">
+                  {{ $message }}
+                </div>
+                @enderror
                 </div>
             </div>
         

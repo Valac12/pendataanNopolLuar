@@ -37,7 +37,7 @@ class KodePlatController extends Controller
         ]);
 
         KodePlat::create($validate);
-        session()->flash('success', 'Data Berhasil Ditambahkan!');
+        session()->flash('successCreateKp', 'Kode Plat Berhasil Ditambahkan!');
         return redirect('/kelolaKodePlat');
     }
 
@@ -71,7 +71,7 @@ class KodePlatController extends Controller
     public function destroy(string $id)
     {
         KodePlat::destroy($id);
-        session()->flash('success', 'Data Berhasil Dihapus!');
+        session()->flash('successDelKp', 'Kode Plat Berhasil Dihapus!');
         return redirect('/kelolaKodePlat');
     }
 }

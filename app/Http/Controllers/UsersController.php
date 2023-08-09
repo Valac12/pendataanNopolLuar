@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -14,7 +15,7 @@ class UsersController extends Controller
     {
         return view('user.index', [
             'tittle' => 'Kelola Users',
-            'userAdmin' => User::where('level', '2')->get()
+            'user' => User::where('level', '2')->get()
         ]);
     }
 
@@ -31,7 +32,20 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'required|min:4',
+            'level' => 'required',
+            'nama_level' => 'required',
+            'online_offline' => 'required'
+        ]);
+
+        $validate['password'] = bcrypt($validate['password']);
+
+        User::create($validate, ['tgl_login' => null, 'tgl_logout' => null]);
+        session()->flash('successCreateUser', 'Data Berhasil Ditambahkan!');
+        return redirect('/kelolaUsers');
     }
 
     /**
@@ -55,7 +69,26 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $validate = $request->validate([
+            'nama' => 'required|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'required|min:4',
+            'level' => 'required',
+            'nama_level' => 'required',
+            'online_offline' => 'required'
+        ]);
+        $pass = auth()->user()->password;
+        $cek = $validate['password'];
+        if(Hash::check($cek,$pass)) {
+            $validate['password'] = bcrypt($validate['password']);
+        }else {
+            session()->flash('faillUpUser', 'Password tidak sesuai!');
+            return redirect('/kelolaUsers');
+        }
+        User::where('id', $id)->update($validate);
+        session()->flash('successUpUser', 'User berhasil diupdate!');
+        return redirect('/kelolaUsers');
     }
 
     /**
@@ -63,6 +96,8 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::destroy($id);
+        session()->flash('successDelUser', 'Data berhasil dihapus!');
+        return redirect('/kelolaUsers');
     }
 }
