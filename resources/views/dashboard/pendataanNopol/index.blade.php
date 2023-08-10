@@ -41,7 +41,7 @@
 @if ($errors->any())
 <div class="container-fluid py-2">
   <div class="alert alert-danger alert-dismissible dafe show" role="alert">
-    Input data gagal, cek form tambah data!   
+    Input data gagal, cek form {{ $btn_add }}   
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 </div>
@@ -49,7 +49,7 @@
 
  <div class="container-fluid w-100 sm">
   <div class="d-flex justify-content-end py-2">
-    <button class="btn btn-primary btn-md border-3" type="button" title="Tambah Data" data-bs-toggle="modal" data-bs-target="#modalNopol">+Tambah Data</button>
+    <button class="btn btn-primary btn-md border-3" type="button" title="Tambah Data" data-bs-toggle="modal" data-bs-target="#modalNopol">+{{ $btn_add }}</button>
   </div>
   <div class="card-body py-2">
   <table id="example" class="row-border" style="width:100%">
@@ -78,12 +78,12 @@
                <td>{{ $npl->longitude }}</td>
                <td>{{ $npl->nama_user }}</td>
               <td class="d-flex justify-content-center">
-                  <button class="badge bg-success border-0 m-1">
+                  <button class="badge bg-success border-0 m-1" title="Detail data" data-bs-toggle="modal" data-bs-target="#modalDetailNopol{{$npl->id}}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#eye-1"> </use>
                         </svg>
                   </button>
-                  <button class="badge bg-warning border-0 m-1">
+                  <button class="badge bg-warning border-0 m-1" title="Edit data" data-bs-toggle="modal" data-bs-target="#modalEditNopol{{$npl->id}}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#edit-window-1"> </use>
                         </svg>
@@ -113,7 +113,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/pendataanNopol" method="post" class="was-validated needs-validation" novalidate>
+        <form action="/pendataanNopol" method="post" class="was-validated needs-validation">
             @csrf
             <div class="mb-3 row position-relative">
               <label for="NoPolis" class="col-sm-2 col-form-label">No Polisi</label>
@@ -132,7 +132,7 @@
               <select class="form-select @error('kd_plat') is-invalid @enderror" name="kd_plat" aria-label="select example" required>
                 <option value="">Open this select menu</option>
                 @foreach($kodePlat as $kp)
-                <option value="{{ $kp->kode_plat }}">{{ $kp->kode_plat }} --- {{ $kp->warna_plat }}</option>
+                <option value="{{ $kp->id }}">{{ $kp->kode_plat }} - {{ $kp->warna_plat }}</option>
                 @endforeach
               </select>
             </div>
@@ -220,5 +220,191 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Edit -->
+@foreach($Nopol as $npl)
+<div class="modal fade" id="modalEditNopol{{ $npl->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data {{ $tittle }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/pendataanNopol/{{ $npl->id }}" method="post" class="was-validated needs-validation">
+          @method('put')
+            @csrf
+            <div class="mb-3 row position-relative">
+              <label for="NoPolis" class="col-sm-2 col-form-label">No Polisi</label>
+              <div class="col-sm-10">
+              <input type="text" class="form-control @error('no_polisi') is-invalid @enderror" name="no_polisi" id="NoPolis" value ="{{ old('no_polisi', $npl->no_polisi) }}"  placeholder="B 3224 AP" autofocus required>
+              @error('no_polisi')
+              <div class="invalid-feedback ">
+                {{ $message }}
+              </div>
+              @enderror
+          </div>
+          </div>
+          <div class="mb-3 row position-relative">
+            <label for="KodePlat" class="col-sm-2 col-form-label">Kode Plat</label>
+            <div class="col-sm-10">
+              <select class="form-select @error('kd_plat') is-invalid @enderror" name="kd_plat" aria-label="select example" required>
+                <option value="{{ $kp->id }}">{{ old('kd_plat', $npl->KodePlat->warna_plat) }}</option>
+                @foreach($kodePlat as $kp)
+                <option value="{{ $kp->id }}">{{ $kp->kode_plat }} - {{ $kp->warna_plat }}</option>
+                @endforeach
+              </select>
+            </div>
+        </div>
+        <div class="mb-3 row position-relative">
+          <label for="SamsatAsal" class="col-sm-2 col-form-label">Samsat Asal</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control @error('samsat_asal') is-invalid @enderror" name="samsat_asal" id="SamsatAsal" value ="{{ old('samsat_asal', $npl->samsat_asal) }}"  placeholder="jayapura" required>
+            @error('samsat_asal')
+            <div class="invalid-feedback ">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+          </div>
+          <div class="mb-3 row postion-relative">
+            <label for="AsalKendaraan" class="col-sm-2 col-form-label">Asal Kendaraan</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control @error('asal_kendaraan') is-invalid @enderror" name="asal_kendaraan" id="AsalKendaraan" value ="{{ old('asal_kendaraan', $npl->asal_kendaraan) }}"  placeholder="jayapura" required>
+            @error('asal_kendaraan')
+            <div class="invalid-feedback ">
+              {{ $message }}
+            </div>
+            @enderror
+            </div>
+        </div>
+        <div class="mb-3 row position-relative">
+          <label for="AlamatSesuaiStnk" class="col-sm-2 col-form-label">Alamat STNK</label>
+          <div class="col-sm-10">
+          <input type="text" class="form-control @error('alamat_sesuai_stnk') is-invalid @enderror" name="alamat_sesuai_stnk" id="AlamatSesuaiStnk" value ="{{ old('alamat_sesuai_stnk', $npl->alamat_sesuai_stnk) }}"  placeholder="jayapura" required>
+          @error('alamat_sesuai_stnk')
+          <div class="invalid-feedback ">
+            {{ $message }}
+          </div>
+          @enderror
+          </div>
+      </div>
+      <div class="mb-3 row position-relative">
+          <label for="pemilik" class="col-sm-2 col-form-label">Pemilik</label>
+          <div class="col-sm-10">
+          <input type="text" class="form-control @error('pemilik') is-invalid @enderror" name="pemilik" id="pemilik" value ="{{ old('pemilik', $npl->pemilik) }}"  placeholder="santianoJoe" required>
+          @error('pemilik')
+          <div class="invalid-feedback ">
+            {{ $message }}
+          </div>
+          @enderror
+          </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="idUserPendataan" class="col-sm-2 col-form-label">Id User</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" name="id_user_pendataan" id="idUserPendataan" value="{{ auth()->user()->level }}" readonly>
+        </div>
+      </div>  
+      <div class="mb-3 row">
+        <label for="NamaUser" class="col-sm-2 col-form-label">Nama Pegawai</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" name="nama_user" id="NamaUser" value="{{ auth()->user()->nama }}" readonly>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="TglPendataan" class="col-sm-2 col-form-label">Tanggal Pendataan</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" name="tgl_pendataan" id="TglPendataan" value="{{ $dateNow }}" readonly>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="Latitude" class="col-sm-2 col-form-label">Latitude</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" name="latitude" id="Latitude" value ="{{ old('latitude', $npl->latitude) }}"  placeholder="-6.193125" required>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="Longitude" class="col-sm-2 col-form-label">Longitude</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" name="longitude" id="Longitude" value ="{{ old('longitude', $npl->longitude) }}"  placeholder=" 106.821810" required>
+        </div>
+    </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Tambah</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+<!-- Modal Detail -->
+@foreach($Nopol as $npl)
+<div class="modal fade" id="modalDetailNopol{{ $npl->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-2" id="staticBackdropLabel">Detail Data Pendataan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table mt-2">
+          <caption class="fw-bold">Detail {{ $npl->pemilik }}</caption>
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Nomor Polisi</th>
+              <th scope="col">Kode Plat</th>
+              <th scope="col">Samsat Asal</th>
+              <th scope="col">Asal Kendaraan</th>
+              <th scope="col">Alamat STNK</th>
+              <th scope="col">Pemilik</th>
+              <th scope="col">Id User</th>
+              <th scope="col">User Pendataan</th>
+              <th scope="col">Tanggal Pendataaan</th>
+              <th scope="col">Latitude</th>
+              <th scope="col">Longitude</th>
+              <th scope="col">Created At</th>
+              <th scope="col">Updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ $npl->no_polisi }}</th>
+              <td>{{ $npl->KodePlat->warna_plat }}</td>
+              <td>{{ $npl->samsat_asal }}</td>
+              <td>{{ $npl->asal_kendaraan }}</td>
+              <td>{{ $npl->alamat_sesuai_stnk }}</td>
+              <td>{{ $npl->pemilik }}</td>
+              <td>{{ $npl->id_user_pendataan }}</td>
+              <td>{{ $npl->nama_user }}</td>
+              <td>{{ $npl->tgl_pendataan }}</td>
+              <td>{{ $npl->latitude }}</td>
+              <td>{{ $npl->longitude }}</td>
+              <td>{{ $npl->created_at }}</td>
+              <td>{{ $npl->updated_at }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+
+{{-- <script>
+  $('#modalEditNopol13').on('hidden.bs.modal', function() {
+    if(!$('#modalEditNopol13').hasClass('no-reload')) {
+      location.reload();
+    }
+  })
+</script> --}}
 
 @endsection

@@ -25,6 +25,8 @@ class NopolKeluarController extends Controller
             'kodePlat' => $kp,
             'user' => $us,
             'dateNow' => $dateNow,
+            'btn_add' => 'tambah data',
+            'btn_edit' => 'edit data'
         ]);
 
     }
@@ -51,7 +53,9 @@ class NopolKeluarController extends Controller
             'pemilik' => 'required',
             'id_user_pendataan' => 'required',
             'nama_user' => 'required',
-            'tgl_pendataan' => 'required'
+            'tgl_pendataan' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
         ]);
         NopolLuar::create($validated);
         session()->flash('successCreateNopol', 'Data Berhasil Ditambahkan!');
@@ -79,7 +83,23 @@ class NopolKeluarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'no_polisi' => 'required|min:3|unique:nopol_luars',
+            'kd_plat' => 'required',
+            'samsat_asal' => 'required',
+            'asal_kendaraan' => 'required',
+            'alamat_sesuai_stnk' => 'required',
+            'pemilik' => 'required',
+            'id_user_pendataan' => 'required',
+            'nama_user' => 'required',
+            'tgl_pendataan' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
+        ]);
+
+        NopolLuar::where('id', $id)->update($validated);
+        session()->flash('successUpNopol', 'Data berhasil dihapus');
+        return redirect('/pendataanNopol');
     }
 
     /**

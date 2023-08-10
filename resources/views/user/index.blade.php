@@ -82,7 +82,7 @@
                 <th>Tgl Login</th>
                 <th>Tgl Logout</th>
                 <th>Created At</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -96,6 +96,11 @@
                 <td>{{ $ua->tgl_logout }}</td>
                 <td>{{ $ua->created_at }}</td>
                 <td>
+                  <button class="badge bg-success border-0 m-1" title="Detail data" data-bs-toggle="modal" data-bs-target="#modalDetailUser{{$ua->id}}">
+                    <svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                        <use xlink:href="#eye-1"> </use>
+                    </svg>
+                  </button>
                   <button class="badge bg-warning border-0 m-1" title="Edit Data" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $ua->id }}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#edit-window-1"> </use>
@@ -245,6 +250,7 @@
                 <label for="Password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="Password" placeholder="****" required>
+                <span class="badge text-bg-warning">Konfirmasi Password</span>
                 @error('password')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -293,6 +299,59 @@
   </div>
 </div>
 @endforeach
+
+<!-- Modal Detail -->
+@foreach($user as $ua)
+<div class="modal fade" id="modalDetailUser{{ $ua->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-2" id="staticBackdropLabel">Detail Data User</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table mt-2">
+          <caption class="fw-bold text-capitalize">Detail {{ $ua->nama }}</caption>
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Nama</th>
+              <th scope="col">Username</th>
+              <th scope="col">Password</th>
+              <th scope="col">Level</th>
+              <th scope="col">Nama Level</th>
+              <th scope="col">Online Offline</th>
+              <th scope="col">Tanggal Login</th>
+              <th scope="col">Tanggal Logout</th>
+              <th scope="col">Created At</th>
+              <th scope="col">Updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ $ua->nama }}</th>
+              <td>{{ $ua->username }}</td>
+              <td>{{ substr($ua->password, 0,10) }}</td>
+              <td>{{ $ua->level }}</td>
+              <td>{{ $ua->nama_level }}</td>
+              <td>{{ $ua->online_offline }}</td>
+              <td>{{ $ua->tgl_login }}</td>
+              <td>{{ $ua->tgl_logout }}</td>
+              <td>{{ $ua->created_at }}</td>
+              <td>{{ $ua->updated_at }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+
 {{-- End Of Modal Edit --}}
  <script>
   // const level = document.querySelector('#level');

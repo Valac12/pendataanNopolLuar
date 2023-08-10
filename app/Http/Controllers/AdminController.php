@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -68,7 +69,25 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'required|min:4',
+            'level' => 'required',
+            'nama_level' => 'required',
+            'online_offline' => 'required'
+        ]);
+        $pass = auth()->user()->password;
+        $cek = $validate['password'];
+        if(Hash::check($cek,$pass)) {
+            $validate['password'] = bcrypt($validate['password']);
+        }else {
+            session()->flash('faillUpAdmin', 'Password tidak sesuai!');
+            return redirect('/kelolaAdmin');
+        }
+        User::where('id', $id)->update($validate);
+        session()->flash('successUpAdmin', 'User berhasil diupdate!');
+        return redirect('/kelolaAdmin');
     }
 
     /**
