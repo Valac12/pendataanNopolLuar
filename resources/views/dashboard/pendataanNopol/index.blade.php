@@ -78,11 +78,11 @@
                <td>{{ $npl->longitude }}</td>
                <td>{{ $npl->nama_user }}</td>
               <td class="d-flex justify-content-center">
-                  <button class="badge bg-success border-0 m-1" title="Detail data" data-bs-toggle="modal" data-bs-target="#modalDetailNopol{{$npl->id}}">
+                  <a class="badge bg-success border-0 m-1" href="/pendataanNopol/{{ $npl->id }}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#eye-1"> </use>
                         </svg>
-                  </button>
+                  </a>
                   <button class="badge bg-warning border-0 m-1" title="Edit data" data-bs-toggle="modal" data-bs-target="#modalEditNopol{{$npl->id}}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#edit-window-1"> </use>
@@ -249,9 +249,9 @@
             <label for="KodePlat" class="col-sm-2 col-form-label">Kode Plat</label>
             <div class="col-sm-10">
               <select class="form-select @error('kd_plat') is-invalid @enderror" name="kd_plat" aria-label="select example" required>
-                <option value="{{ $kp->id }}">{{ old('kd_plat', $npl->KodePlat->warna_plat) }}</option>
+                <option value="{{ old('kd_plat', $npl->kd_plat) }}">{{ old('warna_plat', $npl->KodePlat->warna_plat) }}</option>
                 @foreach($kodePlat as $kp)
-                <option value="{{ $kp->id }}">{{ $kp->kode_plat }} - {{ $kp->warna_plat }}</option>
+                <option value="{{$kp->id }}">{{ $kp->kode_plat }} - {{ $kp->warna_plat }}</option>
                 @endforeach
               </select>
             </div>

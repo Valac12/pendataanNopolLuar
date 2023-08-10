@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\NopolLuar;
 use App\Models\User;
 Use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class NopolKeluarController extends Controller
 {
@@ -67,7 +68,8 @@ class NopolKeluarController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $NopolId = NopolLuar::find($id);
+        return view('dashboard.pendataanNopol.detailPendataan');
     }
 
     /**
@@ -81,10 +83,12 @@ class NopolKeluarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $validated = $request->validate([
-            'no_polisi' => 'required|min:3|unique:nopol_luars',
+    public function update(Request $request, string $id)  {
+        $noPolisi = $request->no_polisi;
+        $dataLama = NopolLuar::find($id);
+
+        // $cek = $noPolisi != $dl->no_polisi;
+        $rules = [
             'kd_plat' => 'required',
             'samsat_asal' => 'required',
             'asal_kendaraan' => 'required',
@@ -95,7 +99,13 @@ class NopolKeluarController extends Controller
             'tgl_pendataan' => 'required',
             'latitude' => 'required',
             'longitude' => 'required'
-        ]);
+        ];
+            if($noPolisi != $dataLama->no_polisi) {
+                $rules['no_polisi'] = 'required|unique:nopol_luars';
+            }
+        
+        
+        $validated = $request->validate($rules); 
 
         NopolLuar::where('id', $id)->update($validated);
         session()->flash('successUpNopol', 'Data berhasil dihapus');
