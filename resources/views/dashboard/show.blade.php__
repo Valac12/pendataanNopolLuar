@@ -25,7 +25,7 @@
 </div>
 
 {{-- image --}}
-  <div class="container-fluid border border py-2">
+  <div class="container-fluid border border py-2 mx-2">
     <div class="row align-items-center">
       <div class="col-5">
         <div class="container border border-dark border-bottom-0 border-top-0 border-end-0 py-5 px-5">
@@ -34,57 +34,57 @@
     </div>
 
     <div class="col-7">
-        <div class="container border border-dark border-bottom-0 border-top-0 p-2 px-5">
-          <div class="row g-6 ">
-            <div class="col-4 p-2">
+        <div class="container border border-dark border-bottom-0 border-top-0 py-5 px-5">
+          <div class="row g-6">
+            <div class="col-4">
               <label for="NoPolisi" class="form-label fw-bold fw-bold">No Polisi</label>
               <input class="form-control" readonly id="NoPolisi" value="{{ $Fid->no_polisi }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="WarnaPlat" class="form-label fw-bold">Warna Plat</label>
               <input class="form-control" readonly id="WarnaPlat" value="{{ $Fid->KodePlat->warna_plat }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="SamsatAsal" class="form-label fw-bold">Samsat Asal</label>
               <input class="form-control" readonly id="SamsatAsal" value="{{ $Fid->samsat_asal }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="AsalKen" class="form-label fw-bold">Asal Kendaraan</label>
               <input class="form-control" readonly id="AsalKen" value="{{ $Fid->asal_kendaraan }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="AlamatStnk" class="form-label fw-bold">Alamat Sesuai Stnk</label>
               <input class="form-control" readonly id="AlamatStnk" value="{{ $Fid->alamat_sesuai_stnk }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="Pemilik" class="form-label fw-bold">Pemilik</label>
               <input class="form-control" readonly id="Pemilik" value="{{ $Fid->pemilik }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="IdUserPen" class="form-label fw-bold">Id User Pendataan</label>
               <input class="form-control" readonly id="IdUserPen" value="{{ $Fid->id_user_pendataan }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="NamaUser" class="form-label fw-bold">nama_user</label>
               <input class="form-control" readonly id="NamaUser" value="{{ $Fid->nama_user }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="TglData" class="form-label fw-bold">tgl_pendataaan</label>
               <input class="form-control" readonly id="TglData" value="{{ $Fid->tgl_pendataan }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="Latitude" class="form-label fw-bold">latitude</label>
               <input class="form-control" readonly id="Latitude" value="{{ $Fid->latitude }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="Longitude" class="form-label fw-bold">longitude</label>
               <input class="form-control" readonly id="Longitude" value="{{ $Fid->longitude }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="CreatedAt" class="form-label fw-bold">Created At</label>
               <input class="form-control" readonly id="CreatedAt" value="{{ $Fid->created_at }}">
             </div>
-            <div class="col-4 p-2">
+            <div class="col-4">
               <label for="UpdatedAt" class="form-label fw-bold">Updated At</label>
               <input class="form-control" readonly id="UpdatedAt" value="{{ $Fid->updated_at }}">
             </div>

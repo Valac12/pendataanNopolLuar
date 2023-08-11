@@ -66,10 +66,12 @@ class NopolKeluarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $NopolId = NopolLuar::find($id);
-        return view('dashboard.pendataanNopol.detailPendataan');
+    public function show(string $id, NopolLuar $nopolLuar)
+    {   
+        $findId = $nopolLuar->find($id);
+        return view('dashboard.pendataanNopol.detailPendataan', [
+            'Fid' => $findId
+        ]);
     }
 
     /**
