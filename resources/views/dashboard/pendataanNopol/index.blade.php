@@ -47,6 +47,8 @@
 </div>
 @endif
 
+
+
  <div class="container-fluid w-100 sm">
   <div class="d-flex justify-content-end py-2">
     <button class="btn btn-primary btn-md border-3" type="button" title="Tambah Data" data-bs-toggle="modal" data-bs-target="#modalNopol">+{{ $btn_add }}</button>
@@ -83,11 +85,11 @@
                             <use xlink:href="#eye-1"> </use>
                         </svg>
                   </a>
-                  <button class="badge bg-warning border-0 m-1" title="Edit data" data-bs-toggle="modal" data-bs-target="#modalEditNopol{{$npl->id}}">
+                  <a class="badge bg-warning border-0 m-1" href="/pendataanNopol/{{ $npl->id }}/edit">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#edit-window-1"> </use>
                         </svg>
-                  </button>
+                  </a>
                   <form action="/pendataanNopol/{{ $npl->id }}" onclick="return confirm('ingin mengapus data?')" method="post" class="d-inline">
                       @method('delete')
                       @csrf
@@ -113,7 +115,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/pendataanNopol" method="post" class="was-validated needs-validation">
+        <form action="/pendataanNopol" method="post" enctype="multipart/form-data" class="was-validated needs-validation">
             @csrf
             <div class="mb-3 row position-relative">
               <label for="NoPolis" class="col-sm-2 col-form-label">No Polisi</label>
@@ -171,16 +173,30 @@
           </div>
       </div>
       <div class="mb-3 row position-relative">
-          <label for="pemilik" class="col-sm-2 col-form-label">Pemilik</label>
-          <div class="col-sm-10">
+        <label for="pemilik" class="col-sm-2 col-form-label">Pemilik</label>
+        <div class="col-sm-10">
           <input type="text" class="form-control @error('pemilik') is-invalid @enderror" name="pemilik" id="pemilik" value ="{{ old('pemilik') }}"  placeholder="santianoJoe" required>
-          @error('pemilik')
+            @error('pemilik')
+            <div class="invalid-feedback ">
+              {{ $message }}
+            </div>
+            @enderror
+       </div>
+      </div>
+          
+      <div class="mb-3 row position-relative">
+        <label for="Gambar" class="col-sm-2 col-form-label">Gambar</label>
+        <div class="col-sm-10">
+        <img class="preview-gambar img-fluid my-2 col-sm-5">
+        <input type="file" class="form-control  @error('gambar') is-invalid @enderror" id="Gambar" name="gambar" aria-label="file example" onchange="previewGambar()" required>
+          @error('gambar')
           <div class="invalid-feedback ">
             {{ $message }}
           </div>
           @enderror
-          </div>
+        </div>
       </div>
+
       <div class="mb-3 row">
         <label for="idUserPendataan" class="col-sm-2 col-form-label">Id User</label>
         <div class="col-sm-10">
@@ -222,7 +238,7 @@
 </div>
 
 <!-- Modal Edit -->
-@foreach($Nopol as $npl)
+{{-- @foreach($Nopol as $npl)
 <div class="modal fade" id="modalEditNopol{{ $npl->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
@@ -231,7 +247,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/pendataanNopol/{{ $npl->id }}" method="post" class="was-validated needs-validation">
+        <form action="/pendataanNopol/{{ $npl->id }}" method="post" enctype="multipart/form-data" class="was-validated needs-validation">
           @method('put')
             @csrf
             <div class="mb-3 row position-relative">
@@ -300,6 +316,24 @@
           @enderror
           </div>
       </div>
+
+      <div class="mb-3 row position-relative">
+        <label for="Gambar" class="col-sm-2 col-form-label">Gambar</label>
+        <div class="col-sm-10">
+        @if($npl->gambar)
+        <img src="{{ asset('storage/' . $npl->gambar) }}" class="edit-preview img-fluid my-2 col-sm-5">
+        @else
+        <img class="edit-preview img-fluid my-2 col-sm-5">
+        @endif
+        <input type="file" class="form-control  @error('gambar') is-invalid @enderror" id="EditGambar" name="gambar" aria-label="file example" onchange="previewEdit()" required>
+          @error('gambar')
+          <div class="invalid-feedback ">
+            {{ $message }}
+          </div>
+          @enderror
+        </div>
+      </div>
+
       <div class="mb-3 row">
         <label for="idUserPendataan" class="col-sm-2 col-form-label">Id User</label>
         <div class="col-sm-10">
@@ -339,7 +373,7 @@
     </div>
   </div>
 </div>
-@endforeach
+@endforeach --}}
 
 <!-- Modal Detail -->
 @foreach($Nopol as $npl)
@@ -398,6 +432,34 @@
 </div>
 @endforeach
 
+<script>
+  function previewGambar()
+  {
+    const Gambar = document.querySelector('#Gambar');
+    const preview = document.querySelector('.preview-gambar');
+
+    preview.style.display = 'block';
+
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(Gambar.files[0]);
+    oFReader.onload = function(oFREvent) {
+    preview.src = oFREvent.target.result;
+    }
+  }
+  // function previewEdit(){
+  //   const EditGambar = document.querySelector('#EditGambar');
+  //   const EditPreview = document.querySelector('.edit-preview');
+
+  //   EditPreview.style = 'block';
+
+  //   const oFReader = new FileReader();
+  //   oFReader.readAsDataURL(EditGambar.files[0]);
+  //   oFReader.loadend = function(oFREvent) {
+  //   EditPreview.src = oFREvent.target.result;
+  //   }
+
+  // }
+</script>
 
 {{-- <script>
   $('#modalEditNopol13').on('hidden.bs.modal', function() {

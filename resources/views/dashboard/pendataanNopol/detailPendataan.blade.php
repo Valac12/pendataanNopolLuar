@@ -29,8 +29,12 @@
     <div class="row align-items-center">
       <div class="col-5">
         <div class="container border border-dark border-bottom-0 border-top-0 border-end-0 py-5 px-5">
+        @if($Fid->gambar)
+        <img src="{{ asset('storage/' .$Fid->gambar)}}" class="img-fluid shadow p-3 mb-5 bg-body rounded " alt="" width="500">
+        @else
         <img src="{{ asset('/img/photos/paul-morris-116514-unsplash.jpg')}}" class="img-fluid shadow p-3 mb-5 bg-body rounded " alt="" width="500">
-      </div>
+        @endif
+        </div>
     </div>
 
     <div class="col-7">

@@ -52,12 +52,18 @@ class NopolKeluarController extends Controller
             'asal_kendaraan' => 'required',
             'alamat_sesuai_stnk' => 'required',
             'pemilik' => 'required',
+            'gambar' => 'image|file|max:1024',
             'id_user_pendataan' => 'required',
             'nama_user' => 'required',
             'tgl_pendataan' => 'required',
             'latitude' => 'required',
             'longitude' => 'required'
         ]);
+
+        if($request->file('gambar')) {
+            $validated['gambar'] = $request->file('gambar')->store('gambar-upload');
+        }
+
         NopolLuar::create($validated);
         session()->flash('successCreateNopol', 'Data Berhasil Ditambahkan!');
         return redirect('/pendataanNopol');
@@ -77,9 +83,18 @@ class NopolKeluarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id, NopolLuar $nopolLuar)
     {
-        //
+        $kp = KodePlat::all();
+        $dt = Carbon::now();
+        $dateNow = $dt->toDateString();
+        $EditById = $nopolLuar->find($id);
+        return view('dashboard.pendataanNopol.edit', [
+            'tittle' => 'Edit Nomor Polisi Luar',
+            'Ebi' => $EditById,
+            'kodePlat' => $kp,
+            'dateNow' => $dateNow
+        ]);
     }
 
     /**

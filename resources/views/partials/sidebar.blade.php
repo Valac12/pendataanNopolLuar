@@ -1,6 +1,6 @@
 <nav class="side-navbar z-index-40">
     <!-- Sidebar Header-->
-    <div class="sidebar-header d-flex align-items-center py-4 px-3"><img class="avatar shadow-0 img-fluid rounded-circle" src="img/avatar-11.jpg" alt="...">
+    <div class="sidebar-header d-flex align-items-center py-4 px-3"><img class="avatar shadow-0 img-fluid rounded-circle" src="{{ asset('img/avatar-11.jpg') }}" alt="...">
       <div class="ms-3 title">
         <h1 class="h4 mb-2">{{ auth()->user()->nama }}</h1>
         <p class="text-sm text-gray-500 fw-light mb-0 lh-1">{{ auth()->user()->nama_level }}</p>

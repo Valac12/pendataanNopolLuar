@@ -16,6 +16,7 @@ class NopolLuar extends Model
         'asal_kendaraan',
         'alamat_sesuai_stnk',
         'pemilik',
+        'gambar',
         'id_user_pendataan',
         'nama_user',
         'tgl_pendataan',
