@@ -17,7 +17,7 @@
 <div class="container-fluid">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb ms-4">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Pendataan Nopol</li>
     </ol>
     {{-- <hr class="border border-dark border-2 opacity-75">   --}}

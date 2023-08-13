@@ -6,8 +6,9 @@ use App\Models\KodePlat;
 use Illuminate\Http\Request;
 use App\Models\NopolLuar;
 use App\Models\User;
-Use Carbon\Carbon;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class NopolKeluarController extends Controller
 {
@@ -29,7 +30,6 @@ class NopolKeluarController extends Controller
             'btn_add' => 'tambah data',
             'btn_edit' => 'edit data'
         ]);
-
     }
 
     /**
@@ -60,7 +60,7 @@ class NopolKeluarController extends Controller
             'longitude' => 'required'
         ]);
 
-        if($request->file('gambar')) {
+        if ($request->file('gambar')) {
             $validated['gambar'] = $request->file('gambar')->store('gambar-upload');
         }
 
@@ -73,7 +73,7 @@ class NopolKeluarController extends Controller
      * Display the specified resource.
      */
     public function show(string $id, NopolLuar $nopolLuar)
-    {   
+    {
         $findId = $nopolLuar->find($id);
         return view('dashboard.pendataanNopol.detailPendataan', [
             'Fid' => $findId
@@ -100,7 +100,9 @@ class NopolKeluarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)  {
+    public function update(Request $request, string $id)
+    {
+        // dd($request);
         $noPolisi = $request->no_polisi;
         $dataLama = NopolLuar::find($id);
 
@@ -111,21 +113,28 @@ class NopolKeluarController extends Controller
             'asal_kendaraan' => 'required',
             'alamat_sesuai_stnk' => 'required',
             'pemilik' => 'required',
-            'id_user_pendataan' => 'required',
+            'gambar' => 'image|file|max:1024',
             'nama_user' => 'required',
             'tgl_pendataan' => 'required',
             'latitude' => 'required',
             'longitude' => 'required'
         ];
-            if($noPolisi != $dataLama->no_polisi) {
-                $rules['no_polisi'] = 'required|unique:nopol_luars';
-            }
-        
-        
-        $validated = $request->validate($rules); 
+        if ($noPolisi != $dataLama->no_polisi) {
+            $rules['no_polisi'] = 'required|unique:nopol_luars';
+        }
 
+
+
+        $validated = $request->validate($rules);
+
+        if ($request->file('gambar')) {
+            if ($dataLama->gambar) {
+                Storage::delete($dataLama->gambar);
+            }
+            $validated['gambar'] = $request->file('gambar')->store('gambar-upload');
+        }
         NopolLuar::where('id', $id)->update($validated);
-        session()->flash('successUpNopol', 'Data berhasil dihapus');
+        session()->flash('successUpNopol', 'Data berhasil Di Ubah');
         return redirect('/pendataanNopol');
     }
 
@@ -136,6 +145,6 @@ class NopolKeluarController extends Controller
     {
         NopolLuar::destroy($id);
         session()->flash('successDelNopol', 'Data berhasil dihapus!');
-        return redirect('/pendataanNopol'); 
+        return redirect('/pendataanNopol');
     }
 }

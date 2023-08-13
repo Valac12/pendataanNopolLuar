@@ -27,10 +27,19 @@
   </div>
 </div>
 @endif
+
+ @if(session()->has('successUpNopol'))
+ <div class="container px-3 py-2">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{ session('successUpNopol') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+@endif
  
  @if(session()->has('successDelNopol'))
  <div class="container px-3 py-2">
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
   {{ session('successDelNopol') }}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
