@@ -40,9 +40,9 @@
             <use xlink:href="#survey-1"> </use>
           </svg>Pendataan NOPOL </a>
       </li>
-      <li class="sidebar-item"><a class="sidebar-link" href="#"> 
+      <li class="sidebar-item"><a class="sidebar-link" href="/cetakData"> 
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-            <use xlink:href="#sales-up-1"> </use>
-          </svg>Charts </a></li>
+            <use xlink:href="#document-1"> </use>
+          </svg>Cetak Data </a></li>
     </ul>
   </nav>

@@ -8,6 +8,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\KodePlatController;
 use App\Http\Controllers\NopolKeluarController;
 use App\Http\Controllers\NopolDetail;
+use App\Http\Controllers\CetakDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,6 @@ Route::resource('/kelolaUsers', UsersController::class)->middleware('auth');
 Route::resource('/kelolaKodePlat', KodePlatController::class)->middleware('auth');
 Route::resource('/pendataanNopol', NopolKeluarController::class)->middleware('auth');
 route::get('/nopolDetail', [NopolDetail::class, 'index']);
+Route::get('/cetakData', [CetakDataController::class, 'index']);
+Route::get('/cetakDataPage', [CetakDataController::class, 'CetakDataPage']);
+Route::post('/cetakData', [CetakDataController::class, 'CetakData']);
