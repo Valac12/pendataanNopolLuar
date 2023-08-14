@@ -8,7 +8,10 @@
   </head>
  <body>
     <div class="container p-2 my-4">
-        <h1 class="text-center">Laporan</h1>
+        <h1 class="text-center">Laporan test</h1>
+        @foreach($cetakData as $ctk)
+        <p>{{ $ctk->tgl_pendataan }}</p>
+        @endforeach
 
     </div>
   

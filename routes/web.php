@@ -35,5 +35,5 @@ Route::resource('/kelolaKodePlat', KodePlatController::class)->middleware('auth'
 Route::resource('/pendataanNopol', NopolKeluarController::class)->middleware('auth');
 route::get('/nopolDetail', [NopolDetail::class, 'index']);
 Route::get('/cetakData', [CetakDataController::class, 'index']);
-Route::get('/cetakDataPage', [CetakDataController::class, 'CetakDataPage']);
-Route::post('/cetakData', [CetakDataController::class, 'CetakData']);
+// Route::get('/cetakDataPage', [CetakDataController::class, 'CetakDataPage']);
+// Route::get('/cetakDataFilter', [CetakDataController::class, 'CetakDataFilter']);

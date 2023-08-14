@@ -21,6 +21,32 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 
+    <style>
+      div.dt-button-collection {
+          width: 400px;
+      }
+      
+      div.dt-button-collection button.dt-button {
+          display: inline-block;
+          width: 32%;
+      }
+      div.dt-button-collection button.buttons-colvis {
+          display: inline-block;
+          width: 49%;
+      }
+      div.dt-button-collection h3 {
+          margin-top: 5px;
+          margin-bottom: 5px;
+          font-weight: 100;
+          border-bottom: 1px solid rgba(150, 150, 150, 0.5);
+          font-size: 1em;
+          padding: 0 1em;
+      }
+      div.dt-button-collection h3.not-top-heading {
+          margin-top: 10px;
+      }
+    </style>
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -55,6 +81,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
     <!-- Main File-->
     <script src="{{ asset('js/front.js') }}"></script>
     <script>
@@ -108,6 +135,35 @@
           table.buttons().container()
          .appendTo( '#example_wrapper .col-md-6:eq(0)' );  
     } );
+    
+    $(document).ready(function() {
+      var tableCetak = $('#tablePrint').DataTable({
+        lengthChange: false,
+        responsive: true,
+        dom: 'Bfrtip',
+        // searching: false,
+        buttons: [
+        {
+         extend: 'print',
+         filename: 'Report',
+         title: 'Bappenda',
+         messageTop: 'Badan Pendapatan Provinsi Jayapura',
+         exportOptions: {
+         columns: ':visible'
+          }
+        },
+         'colvis'
+        ],
+        columnDefs: [ {
+            targets: -1,
+            visible: false
+        } 
+        ],
+      });
+      table.buttons().container()
+         .appendTo( '#example_wrapper .col-md-6:eq(0)' ); 
+    });
+
     </script>
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">

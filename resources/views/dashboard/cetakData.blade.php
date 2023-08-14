@@ -18,28 +18,64 @@
    </div>
  </div>
 
-<div class="container mt-2 py-2">
+<div class="container shadow-sm p-3 mb-5 bg-body rounded mt-2 py-2">
     <div class="container-fluid p-2">
-        <form action="/cetakData" method="post">
+        <form action="/cetakData" method="get">
             @csrf
-            <div class="row justify-content-md-center g-3">
-                <div class="col-md-4">
+            <div class="row justify-content-md-center g-3 d-flex">
+                <div class="col-auto">
                     <label for="tglAwal" class="form-label">Tanggal Awal</label>
-                    <input type="date" name="tgl_awal" class="form-control" id="tglAwal">
+                    <input type="date" name="tgl_awal" class="form-control" id="tglAwal" value="{{ request('tgl_awal') }}">
                 </div>
-                <div class="col-md-4">
+                <div class="col-auto">
                     <label for="TanggalAkhir" class="form-label">Tanggal Akhir</label>
-                    <input type="date" name="tgl_akhir" class="form-control" id="TanggalAkhir">
+                    <input type="date" name="tgl_akhir" class="form-control" id="TanggalAkhir" value="{{ request('tgl_akhir') }}">
                 </div>
+                 <div class="col-auto align-self-center mt-5">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                 </div>
             </div>
-
-            <div class="p-2 m-2 d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="submit" class="btn btn-primary">Cetak</button>
-            </div>
-
         </form>
     </div>
 </div>
+
+<div class="container-fluid mt-2">
+  <div class="card-body">
+    <table class="table row-bordered" style="width: 100%" id="tablePrint">
+      <thead>
+        <tr class="table-secondary">
+          <th>No</th>
+          <th>No Polisi</th>
+          <th>Warna Plat</th>
+          <th>Pemilik</th>
+          <th>Tanggal Pendataan</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Nama Pegawai</th>
+        </tr>
+        <tbody>
+          @foreach($Nopol as $npl)
+            <tr>
+               <td>{{ $loop->iteration }}</td>
+               <td>{{ $npl->no_polisi }}</td>
+               <td>{{ $npl->kodePlat->warna_plat }}</td>
+               <td>{{ $npl->pemilik }}</td>
+               <td>{{ $npl->tgl_pendataan }}</td>
+               <td>{{ $npl->latitude }}</td>
+               <td>{{ $npl->longitude }}</td>
+               <td>{{ $npl->nama_user }}</td>
+              </tr>
+            @endforeach
+        </tbody>
+      </thead>
+    </table>
+  </div>
+</div>
+  
+
+
+
+
 
 
 @endsection
