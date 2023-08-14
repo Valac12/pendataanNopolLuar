@@ -11,7 +11,7 @@
      <div class="container-fluid">
        <nav aria-label="breadcrumb">
          <ol class="breadcrumb mb-0 py-3">
-           <li class="breadcrumb-item"><a class="fw-light" href="/dashboard">Home</a></li>
+           <li class="breadcrumb-item"><a class="fw-light" href="/pendataanNopol">Pendataan Nomor Polisi</a></li>
            <li class="breadcrumb-item active fw-light" aria-current="page">{{ $tittle }}</li>
          </ol>
        </nav>
@@ -100,7 +100,7 @@
                 <label for="pemilik" class="col-sm-4 col-form-label">Pemilik</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control @error('pemilik') is-invalid @enderror" name="pemilik" id="pemilik" value ="{{ old('pemilik', $Ebi->pemilik) }}"  placeholder="santianoJoe" required>
-                @error('asal_kendaraan')
+                @error('pemilik')
                 <div class="invalid-feedback ">
                   {{ $message }}
                 </div>
@@ -114,7 +114,7 @@
                <label for="Latitude" class="col-sm-2 col-form-label">Latitude</label>
                 <div class="col-sm-10">
                 <input type="text" class="form-control" name="latitude" id="Latitude" value ="{{ old('latitude', $Ebi->latitude) }}"  placeholder="-6.193125" required>
-                @error('asal_kendaraan')
+                @error('latitude')
                 <div class="invalid-feedback ">
                   {{ $message }}
                 </div>
@@ -127,7 +127,7 @@
                <label for="Longitude" class="col-sm-2 col-form-label">Longitude</label>
                 <div class="col-sm-10">
                 <input type="text" class="form-control" name="longitude" id="Longitude" value ="{{ old('longitude', $Ebi->longitude) }}"  placeholder=" 106.821810" required>
-                @error('asal_kendaraan')
+                @error('longitude')
                 <div class="invalid-feedback ">
                   {{ $message }}
                 </div>
@@ -145,8 +145,8 @@
                 @else
                 <img class="edit-preview img-fluid my-2 col-sm-5">
                 @endif
-                <input type="file" class="form-control  @error('gambar') is-invalid @enderror" id="EditGambar" name="gambar" aria-label="file example" onchange="previewEdit()" required>
-                @error('asal_kendaraan')
+                <input type="file" class="form-control  @error('gambar') is-invalid @enderror" id="EditGambar" name="gambar" aria-label="file example" onchange="previewEdit()">
+                @error('gambar')
                 <div class="invalid-feedback ">
                   {{ $message }}
                 </div>
@@ -160,7 +160,7 @@
                 <label for="NamaUser" class="col-sm-6 col-form-label">Nama Pegawai</label>
                 <div class="col-sm-10">
                 <input type="text" class="form-control" name="nama_user" id="NamaUser" value="{{ auth()->user()->nama }}" readonly>
-                @error('asal_kendaraan')
+                @error('nama_user')
                 <div class="invalid-feedback ">
                   {{ $message }}
                 </div>
@@ -174,7 +174,7 @@
                 <label for="TglPendataan" class="col-sm-8 col-form-label">Tanggal Pendataan</label>
                 <div class="col-sm-10">
                 <input type="text" class="form-control" name="tgl_pendataan" id="TglPendataan" value="{{ $dateNow }}" readonly>
-                @error('asal_kendaraan')
+                @error('tgl_pendataan')
                 <div class="invalid-feedback ">
                   {{ $message }}
                 </div>
@@ -185,7 +185,7 @@
 
         
       </div>
-      <button type="submit" class="btn btn-primary">Edit</button>
+      <button type="submit" class="btn btn-primary" onclick="return confirm('Yakin data akan diubah?')">Edit</button>
   </form>
 </div>
 

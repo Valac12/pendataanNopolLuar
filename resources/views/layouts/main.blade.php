@@ -3,24 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard</title>
+    <title>{{ $tittle }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
     <!-- Google fonts - Poppins -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
     <!-- Choices CSS-->
-  <link rel="stylesheet" href="{{ asset('vendor/choices.js/public/assets/styles/choices.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('vendor/choices.js/public/assets/styles/choices.min.css') }}">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="{{ asset('css/style.default.css') }}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo.ico') }}">
+    {{-- Bootstrap icons --}}
     {{-- DataTables --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 
+    {{-- style for datatables --}}
     <style>
       div.dt-button-collection {
           width: 400px;
@@ -144,18 +146,20 @@
         // searching: false,
         buttons: [
         {
+         text: 'Print',
          extend: 'print',
          filename: 'Report',
          title: 'Bappenda',
          messageTop: 'Badan Pendapatan Provinsi Jayapura',
-         exportOptions: {
-         columns: ':visible'
-          }
         },
-         'colvis'
+         {
+          text: 'Table Control',
+          extend: 'colvis',
+          collectionLayout: 'two-column',
+         }
         ],
         columnDefs: [ {
-            targets: -1,
+            targets: [-5,-6,-7],
             visible: false
         } 
         ],

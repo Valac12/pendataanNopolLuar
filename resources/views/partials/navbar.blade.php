@@ -5,7 +5,7 @@
               <!-- Navbar Header-->
               <div class="navbar-header">
                 <!-- Navbar Brand --><a class="navbar-brand d-none d-sm-inline-block" href="index.html">
-                  <div class="brand-text d-none d-lg-inline-block"><span>Pendataan</span> <strong>NOPOL</strong></div>
+                  <div class="brand-text d-none d-lg-inline-block"><img src="{{ asset('img/logo-papua.png') }}" class="avatar rounded shadow-0 img-fluid bg-dark" alt=""><span>Pendataan</span> <strong>NOPOL</strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button-->
                 <a class="menu-btn active" id="toggle-btn" href="#"><span></span><span></span><span></span></a>

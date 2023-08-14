@@ -3,8 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detail</title>
+    <meta name="robots" content="all,follow">
+    <title>Detail {{ $Fid->pemilik }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="{{ asset('css/style.default.css') }}" id="theme-stylesheet">
+
+     <link rel="shortcut icon" href="{{ asset('img/logo.ico') }}">
   </head>
  <body>
     <!-- Page Header-->
@@ -17,18 +24,24 @@
 <div class="container-fluid">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb ms-4">
-      <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Pendataan Nopol</li>
+      <li class="breadcrumb-item"><a href="/pendataanNopol">Pendataan Nopol</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detail Pendataan Nomor Polisi Luar</li>
     </ol>
     {{-- <hr class="border border-dark border-2 opacity-75">   --}}
   </nav>
 </div>
 
+{{-- <div class="container-fluid d-flex justify-content-end">
+  <button href="" type="button" class="btn btn-warning btn-lg border-0 m-2 text-white">
+      <i class="bi bi-pencil"></i> Edit
+    </button>
+</div> --}}
+
 {{-- image --}}
-  <div class="container-fluid border border py-2">
+  <div class="container-fluid border">
     <div class="row align-items-center">
       <div class="col-5">
-        <div class="container border border-dark border-bottom-0 border-top-0 border-end-0 py-5 px-5">
+        <div class="container py-4 px-5">
         @if($Fid->gambar)
         <img src="{{ asset('storage/' .$Fid->gambar)}}" class="img-fluid shadow p-3 mb-5 bg-body rounded " alt="" width="500">
         @else

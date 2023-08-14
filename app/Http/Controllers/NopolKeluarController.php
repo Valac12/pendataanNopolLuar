@@ -123,8 +123,6 @@ class NopolKeluarController extends Controller
             $rules['no_polisi'] = 'required|unique:nopol_luars';
         }
 
-
-
         $validated = $request->validate($rules);
 
         if ($request->file('gambar')) {

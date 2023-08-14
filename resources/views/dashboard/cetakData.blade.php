@@ -48,10 +48,13 @@
           <th>No Polisi</th>
           <th>Warna Plat</th>
           <th>Pemilik</th>
-          <th>Tanggal Pendataan</th>
+          <th>Samsat Asal</th>
+          <th>Asal Kendaraan</th>
+          <th>Alamat Stnk</th>
           <th>Latitude</th>
           <th>Longitude</th>
           <th>Nama Pegawai</th>
+          <th class="text-center">Tanggal Pendataan</th>
         </tr>
         <tbody>
           @foreach($Nopol as $npl)
@@ -60,10 +63,13 @@
                <td>{{ $npl->no_polisi }}</td>
                <td>{{ $npl->kodePlat->warna_plat }}</td>
                <td>{{ $npl->pemilik }}</td>
-               <td>{{ $npl->tgl_pendataan }}</td>
+               <td>{{ $npl->samsat_asal }}</td>
+               <td>{{ $npl->asal_kendaraan }}</td>
+               <td>{{ $npl->alamat_sesuai_stnk }}</td>
                <td>{{ $npl->latitude }}</td>
                <td>{{ $npl->longitude }}</td>
                <td>{{ $npl->nama_user }}</td>
+               <td class="text-center">{{ $npl->tgl_pendataan }}</td>
               </tr>
             @endforeach
         </tbody>
