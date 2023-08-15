@@ -89,7 +89,7 @@
                <td>{{ $npl->longitude }}</td>
                <td>{{ $npl->nama_user }}</td>
               <td class="d-flex justify-content-center">
-                  <a class="badge bg-success border-0 m-1" href="/pendataanNopol/{{ $npl->id }} ">
+                  <a class="badge bg-success border-0 m-1" href="/pendataanNopol/{{ $npl->id }}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#eye-1"> </use>
                         </svg>

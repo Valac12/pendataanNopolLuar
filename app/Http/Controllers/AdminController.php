@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KodePlat;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -51,9 +53,13 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, User $user)
     {
-        //
+        $userId = $user->find($id);
+        return view('admin.adminDetail', [
+            'tittle' => 'Admin Detail',
+            'userId' => $userId
+        ]);
     }
 
     /**
@@ -67,27 +73,38 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, User $user)
     {
-        $validate = $request->validate([
-            'nama' => 'required|unique:users',
-            'username' => 'required|unique:users',
+        $username = $request->username;
+        $password = $request->password;
+        $dataLama = $user->find($id);
+
+        $rules = [
+            'nama' => 'required',
             'password' => 'required|min:4',
             'level' => 'required',
             'nama_level' => 'required',
             'online_offline' => 'required'
-        ]);
+        ];
+
+        // cek username
+        if($username != $dataLama->username)
+        {
+            $rules['username'] = 'required|unique:users';
+        }
+
+        $validate = $request->validate($rules);
+        // cek match password
         $pass = auth()->user()->password;
-        $cek = $validate['password'];
-        if(Hash::check($cek,$pass)) {
+        if(Hash::check($password,$pass)) {
             $validate['password'] = bcrypt($validate['password']);
         }else {
             session()->flash('faillUpAdmin', 'Password tidak sesuai!');
-            return redirect('/kelolaAdmin');
+            return redirect('/kelolaAdmin/'.$id);
         }
         User::where('id', $id)->update($validate);
-        session()->flash('successUpAdmin', 'User berhasil diupdate!');
-        return redirect('/kelolaAdmin');
+        // session()->flash('successUpAdmin', 'Admin berhasil diupdate!');
+        return redirect('/kelolaAdmin/'.$id)->with('successUpAdmin', 'Admin berhasil diupdate!');
     }
 
     /**

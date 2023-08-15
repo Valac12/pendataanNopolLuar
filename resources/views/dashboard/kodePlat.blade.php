@@ -49,7 +49,7 @@
  
  <div class="container-fluid w-100">
   <div class="d-flex justify-content-end py-2">
-    <button class="btn btn-primary btn-md border-3" type="button" title="Tambah Data" data-bs-toggle="modal" data-bs-target="#modalPlat">+</button>
+    <button class="btn btn-primary btn-md border-3" type="button" title="Tambah Data" data-bs-toggle="modal" data-bs-target="#modalPlat">+Tambah Data</button>
   </div>
   <div class="card-body py-2">
   <table id="example" class="display nowrap" style="width:100%">
@@ -72,7 +72,7 @@
                 <td>{{ $kp->created_at }}</td>
                 <td>{{ $kp->updated_at }}</td>
                 <td>
-                  <button class="badge bg-warning border-0">
+                  <button class="badge bg-warning border-0" title="Edit Data" data-bs-toggle="modal" data-bs-target="#modalPlatEdit{{ $kp->id }}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#edit-window-1"> </use>
                         </svg>
@@ -93,7 +93,7 @@
  </div>
  </div>
 
-<!-- Modal -->
+<!-- Modal Tambah -->
 <div class="modal fade" id="modalPlat" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -135,5 +135,50 @@
     </div>
   </div>
 </div>
+
+@foreach($kodePlat as $kp)
+<!-- Modal Edit -->
+<div class="modal fade" id="modalPlatEdit{{ $kp->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data {{ $tittle }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/kelolaKodePlat/{{ $kp->id }}" method="post" class="was validated needs-validation" novalidate>
+            @csrf
+            <div class="mb-3 row position-relative">
+                <label for="KodePlat" class="col-sm-2 col-form-label">Kode Plat</label>
+                <div class="col-sm-10">
+                <input type="number" class="form-control @error('kode_plat') is-invalid @enderror" name="kode_plat" id="KodePlat" placeholder="001" value="{{ old('kode_plat',$kp->kode_plat) }}" autofocus required>
+                @error('kode_plat')
+                <div class="invalid-feedback ">
+                  {{ $message }}
+                </div>
+                @enderror
+                </div>
+            </div>
+            <div class="mb-3 row position-relative">
+                <label for="WarnaPlat" class="col-sm-2 col-form-label">Warna Plat</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control @error('warna_plat') is-invalid @enderror" name="warna_plat" id="WarnaPlat" placeholder="hitam" value="{{ old('warna_plat', $kp->warna_plat) }}" required>
+                @error('warna_plat')
+                <div class="invalid-feedback ">
+                  {{ $message }}
+                </div>
+                @enderror
+                </div>
+            </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
 
 @endsection

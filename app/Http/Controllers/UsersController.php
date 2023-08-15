@@ -51,9 +51,13 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, User $user)
     {
-        //
+        $userId = $user->find($id);
+        return view('user.userDetail', [
+            'tittle' => 'User Detail',
+            'userId' => $userId
+        ]);
     }
 
     /**
@@ -67,28 +71,39 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, User $user)
     {
         
-        $validate = $request->validate([
-            'nama' => 'required|unique:users',
-            'username' => 'required|unique:users',
+        $username = $request->username;
+        $password = $request->password;
+        $dataLama = $user->find($id);
+
+        $rules = [
+            'nama' => 'required',
             'password' => 'required|min:4',
             'level' => 'required',
             'nama_level' => 'required',
             'online_offline' => 'required'
-        ]);
+        ];
+
+        // cek username
+        if($username != $dataLama->username)
+        {
+            $rules['username'] = 'required|unique:users';
+        }
+
+        $validate = $request->validate($rules);
+        // cek match password
         $pass = auth()->user()->password;
-        $cek = $validate['password'];
-        if(Hash::check($cek,$pass)) {
+        if(Hash::check($password,$pass)) {
             $validate['password'] = bcrypt($validate['password']);
         }else {
             session()->flash('faillUpUser', 'Password tidak sesuai!');
-            return redirect('/kelolaUsers');
+            return redirect('/kelolaUsers/'.$id);
         }
         User::where('id', $id)->update($validate);
-        session()->flash('successUpUser', 'User berhasil diupdate!');
-        return redirect('/kelolaUsers');
+        // session()->flash('successUpAdmin', 'Admin berhasil diupdate!');
+        return redirect('/kelolaUsers/'.$id)->with('successUpUser', 'User berhasil diupdate!');
     }
 
     /**

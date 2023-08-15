@@ -96,16 +96,11 @@
                 <td>{{ $ua->tgl_logout }}</td>
                 <td>{{ $ua->created_at }}</td>
                 <td>
-                  <button class="badge bg-success border-0 m-1" title="Detail data" data-bs-toggle="modal" data-bs-target="#modalDetailUser{{$ua->id}}">
+                  <a class="badge bg-warning border-0 m-1" href="/kelolaUsers/{{ $ua->id }}">
                     <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                         <use xlink:href="#eye-1"> </use>
                     </svg>
-                  </button>
-                  <button class="badge bg-warning border-0 m-1" title="Edit Data" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $ua->id }}">
-                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
-                            <use xlink:href="#edit-window-1"> </use>
-                        </svg>
-                    </button>
+                </a>
                     <form action="/kelolaUsers/{{ $ua->id }}" method="post" class="d-inline">
                       @method('delete')
                       @csrf
