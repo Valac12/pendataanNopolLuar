@@ -42,7 +42,7 @@ class LoginController extends Controller
                     'tgl_login' => $dateNow,
                     'online_offline' => 'Online'
                 ]);
-                return redirect()->intended('/user');
+                return redirect()->intended('/dashboard');
             }
         }
         return back()->with('loginError', 'Login Failed!!!');

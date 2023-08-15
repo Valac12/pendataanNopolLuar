@@ -12,7 +12,7 @@
      <div class="container-fluid">
        <nav aria-label="breadcrumb">
          <ol class="breadcrumb mb-0 py-3">
-           <li class="breadcrumb-item"><a class="fw-light" href="/kelolaAdmin">Kelola Admin</a></li>
+           <li class="breadcrumb-item"><a class="fw-light" href="/kelolaUsers">Kelola User</a></li>
            <li class="breadcrumb-item active fw-light" aria-current="page">{{ $tittle }}</li>
          </ol>
        </nav>

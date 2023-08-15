@@ -21,12 +21,12 @@
                 </svg>
               </div>
               <div class="mx-3">
-                <h6 class="h4 fw-light text-gray-600 mb-3">New<br>Clients</h6>
+                <h6 class="h4 fw-light text-gray-600 mb-3">Pegawai</h6>
                 <div class="progress" style="height: 4px">
-                  <div class="progress-bar bg-violet" role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-violet" role="progressbar" style="width: {{ $pegawai }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
-              <div class="number"><strong class="text-lg">25</strong></div>
+              <div class="number"><strong class="text-lg">{{ $pegawai }}</strong></div>
             </div>
           </div>
           <!-- Item -->

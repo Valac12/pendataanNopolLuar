@@ -13,6 +13,8 @@
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#real-estate-1"> </use>
           </svg>Home</a></li>
+
+          @can('GateAdmin')
           <li class="sidebar-item"><a class="sidebar-link" href="#exampledropdownDropdown" data-bs-toggle="collapse"> 
             <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
               <use xlink:href="#chart-1"> </use>
@@ -35,6 +37,8 @@
             </li>
           </ul>
         </li>
+        @endcan
+
       <li class="sidebar-item {{ ($tittle === "Pendataan Nomor Polisi Luar" ? 'active' : '') }}"><a class="sidebar-link" href="/pendataanNopol"> 
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#survey-1"> </use>

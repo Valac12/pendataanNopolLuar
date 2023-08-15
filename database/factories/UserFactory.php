@@ -18,9 +18,14 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'nama' => fake()->name(),
             'username' => fake()->firstName(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => bcrypt('user123'), // password
+            'level' => 2,
+            'nama_level' => 'User',
+            'online_offline' => 'Offline',
+            'tgl_login' => '2023-08-15 18:37:53',
+            'tgl_logout' => '2023-08-15 01:11:56',
         ];
     }
 

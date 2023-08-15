@@ -29,11 +29,11 @@ Route::post('/loginAuth', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-Route::resource('/kelolaAdmin', AdminController::class)->middleware('auth');
-Route::resource('/kelolaUsers', UsersController::class)->middleware('auth');
-Route::resource('/kelolaKodePlat', KodePlatController::class)->middleware('auth');
+Route::resource('/kelolaAdmin', AdminController::class)->middleware('admin');
+Route::resource('/kelolaUsers', UsersController::class)->middleware('admin');
+Route::resource('/kelolaKodePlat', KodePlatController::class)->middleware('admin');
 Route::resource('/pendataanNopol', NopolKeluarController::class)->middleware('auth');
-route::get('/nopolDetail', [NopolDetail::class, 'index']);
-Route::get('/cetakData', [CetakDataController::class, 'index']);
+route::get('/nopolDetail', [NopolDetail::class, 'index'])->middleware('auth');
+Route::get('/cetakData', [CetakDataController::class, 'index'])->middleware('auth');
 // Route::get('/cetakDataPage', [CetakDataController::class, 'CetakDataPage']);
 // Route::get('/cetakDataFilter', [CetakDataController::class, 'CetakDataFilter']);
