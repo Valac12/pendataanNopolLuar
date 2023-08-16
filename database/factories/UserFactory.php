@@ -20,9 +20,9 @@ class UserFactory extends Factory
         return [
             'nama' => fake()->name(),
             'username' => fake()->firstName(),
-            'password' => bcrypt('user123'), // password
-            'level' => 2,
-            'nama_level' => 'User',
+            'password' => bcrypt('admin123'), // password
+            'level' => 1,
+            'nama_level' => 'Administrator',
             'online_offline' => 'Offline',
             'tgl_login' => '2023-08-15 18:37:53',
             'tgl_logout' => '2023-08-15 01:11:56',

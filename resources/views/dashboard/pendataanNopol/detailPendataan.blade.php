@@ -38,7 +38,8 @@
 </div> --}}
 
 {{-- image --}}
-  <div class="container-fluid border">
+<hr class="border border-warning border-2 opacity-50">
+  <div class="container-fluid py-2 border">
     <div class="row align-items-center">
       <div class="col-5">
         <div class="container py-4 px-5">
@@ -51,7 +52,7 @@
     </div>
 
     <div class="col-7">
-        <div class="container border border-dark border-bottom-0 border-top-0 p-2 px-5">
+        <div class="container">
           <div class="row g-6 ">
             <div class="col-4 p-2">
               <label for="NoPolisi" class="form-label fw-bold fw-bold">No Polisi</label>
@@ -82,20 +83,24 @@
               <input class="form-control" readonly id="IdUserPen" value="{{ $Fid->id_user_pendataan }}">
             </div>
             <div class="col-4 p-2">
-              <label for="NamaUser" class="form-label fw-bold">nama_user</label>
+              <label for="NamaUser" class="form-label fw-bold">Nama User</label>
               <input class="form-control" readonly id="NamaUser" value="{{ $Fid->nama_user }}">
             </div>
             <div class="col-4 p-2">
-              <label for="TglData" class="form-label fw-bold">tgl_pendataaan</label>
+              <label for="TglData" class="form-label fw-bold">Tanggal Pendataaan</label>
               <input class="form-control" readonly id="TglData" value="{{ $Fid->tgl_pendataan }}">
             </div>
             <div class="col-4 p-2">
-              <label for="Latitude" class="form-label fw-bold">latitude</label>
+              <label for="Latitude" class="form-label fw-bold">Latitude</label>
               <input class="form-control" readonly id="Latitude" value="{{ $Fid->latitude }}">
             </div>
             <div class="col-4 p-2">
-              <label for="Longitude" class="form-label fw-bold">longitude</label>
+              <label for="Longitude" class="form-label fw-bold">Longitude</label>
               <input class="form-control" readonly id="Longitude" value="{{ $Fid->longitude }}">
+            </div>
+            <div class="col-4 p-2">
+              <label for="Status" class="form-label {{ ($Fid->status === "Belum Balik Nama" ? 'badge bg-danger' : 'badge bg-success') }} fw-bold">Status</label>
+              <input class="form-control {{ ($Fid->status === "Belum Balik Nama" ? 'is-invalid text-danger' : 'is-valid text-success') }}" readonly id="Status" value="{{ $Fid->status }}">
             </div>
             <div class="col-4 p-2">
               <label for="CreatedAt" class="form-label fw-bold">Created At</label>

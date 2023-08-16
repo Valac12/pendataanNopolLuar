@@ -60,6 +60,8 @@ class NopolKeluarController extends Controller
             'longitude' => 'required'
         ]);
 
+        $validated['status'] = 'Belum Balik Nama';
+
         if ($request->file('gambar')) {
             $validated['gambar'] = $request->file('gambar')->store('gambar-upload');
         }

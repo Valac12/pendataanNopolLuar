@@ -15,9 +15,13 @@ class AdminController extends Controller
      */
     public function index()
     {
+        // $cek = User::where('level','1')->get();
+        // dd($cek);
         return view('admin.index', [
             'tittle' => 'Kelola Admin',
-            'userAdmin' => User::where('level', '1')->get()
+            'userAdmin' => User::where('level', '1')
+                                ->orderByDesc('created_at')
+                                ->get()
         ]);
     }
 

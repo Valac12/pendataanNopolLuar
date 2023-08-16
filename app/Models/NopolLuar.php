@@ -20,6 +20,7 @@ class NopolLuar extends Model
         'id_user_pendataan',
         'nama_user',
         'tgl_pendataan',
+        'status',
         'latitude',
         'longitude',
     ];

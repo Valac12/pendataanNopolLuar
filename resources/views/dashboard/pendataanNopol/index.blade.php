@@ -236,6 +236,7 @@
         <input type="text" class="form-control" name="longitude" id="Longitude" value ="{{ old('longitude') }}"  placeholder=" 106.821810" required>
         </div>
     </div>
+    <input type="hidden" name="status">
         
       </div>
       <div class="modal-footer">

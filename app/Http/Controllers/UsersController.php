@@ -15,7 +15,9 @@ class UsersController extends Controller
     {
         return view('user.index', [
             'tittle' => 'Kelola Users',
-            'user' => User::where('level', '2')->get()
+            'user' => User::where('level', '2')
+                                    ->orderByDesc('created_at')
+                                    ->get()
         ]);
     }
 

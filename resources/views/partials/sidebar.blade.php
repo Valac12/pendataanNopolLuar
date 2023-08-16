@@ -44,9 +44,15 @@
             <use xlink:href="#survey-1"> </use>
           </svg>Pendataan NOPOL </a>
       </li>
+      <li class="sidebar-item {{ ($tittle === "Balik Nama" ? 'active' : '') }}"><a class="sidebar-link" href="/dashboard/balik-nama"> 
+          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#quit-1"> </use>
+          </svg>Balik Nama </a>
+      </li>
       <li class="sidebar-item {{ ($tittle === "Cetak Data" ? 'active' : '') }}"><a class="sidebar-link" href="/cetakData"> 
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#document-1"> </use>
-          </svg>Cetak Data </a></li>
+          </svg>Cetak Data </a>
+        </li>
     </ul>
   </nav>

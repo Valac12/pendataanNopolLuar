@@ -9,6 +9,7 @@ use App\Http\Controllers\KodePlatController;
 use App\Http\Controllers\NopolKeluarController;
 use App\Http\Controllers\NopolDetail;
 use App\Http\Controllers\CetakDataController;
+use App\Http\Controllers\BalikNamaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,8 @@ Route::resource('/kelolaAdmin', AdminController::class)->middleware('admin');
 Route::resource('/kelolaUsers', UsersController::class)->middleware('admin');
 Route::resource('/kelolaKodePlat', KodePlatController::class)->middleware('admin');
 Route::resource('/pendataanNopol', NopolKeluarController::class)->middleware('auth');
-route::get('/nopolDetail', [NopolDetail::class, 'index'])->middleware('auth');
+Route::get('/nopolDetail', [NopolDetail::class, 'index'])->middleware('auth');
 Route::get('/cetakData', [CetakDataController::class, 'index'])->middleware('auth');
+Route::resource('/dashboard/balik-nama', BalikNamaController::class);
 // Route::get('/cetakDataPage', [CetakDataController::class, 'CetakDataPage']);
 // Route::get('/cetakDataFilter', [CetakDataController::class, 'CetakDataFilter']);
