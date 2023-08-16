@@ -18,34 +18,84 @@
    </div>
  </div>
 
- <div class="container shadow-sm p-3 mb-5 bg-body rounded py-2">
+ <div class="container shadow-sm p-3 mb-4 bg-body rounded py-2">
     <div class="container-fluid p-2">
-        <form action="#" method="get">
+      @foreach($idNoPolisi as $inp)
+        <form action="/dashboard/balik-nama/{{ $inp->id }}" method="post">
+        @endforeach
+          @method('put')
             @csrf
+
+            @if(session()->has('successBalikNama'))
+            <div class="container-fluid py-2">
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ session('successBalikNama') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+            @endif
+
             <div class="row justify-content-md-center g-3 d-flex">
                 <div class="col-auto">
                     <label for="Status" class="form-label">Nomor Polisi</label>
-                    <select class="form-select" id="SelectNopol" aria-label="Default select example" required>
-                        <option value="">Choose..</option>
-                        @foreach($noPolisi as $np)
+                    <select class="form-select" id="SelectNopol" name="no_polisi" aria-label="Default select example" required>
+                      @foreach($noPolisi as $np)
+                      @if(old('no_polisi') === $np->no_polisi)
+                        <option value="{{ $np->no_polisi }}" selected>{{ $np->no_polisi }}</option>
+                      @else
                         <option value="{{ $np->no_polisi }}">{{ $np->no_polisi }}</option>
+                      @endif
                         @endforeach
                       </select>
                 </div>
                 <div class="col-auto">
                     <label for="Status" class="form-label">Status</label>
-                    <select class="form-select" id="SelectNopol2" aria-label="Default select example" required>
-                        <option value="">Choose..</option>
+                    <select class="form-select @error('status') is-invalid @enderror" id="SelectStatus" name="status" aria-label="Default select example" required>
+                        <option value="">Choose Status</option>
                         <option value="Sudah Balik Nama">Sudah Balik Nama</option>
                         <option value="Belum Balik Nama">Belum Balik Nama</option>
                       </select>
+                       @error('status')
+                        <div class="invalid-feedback ">
+                          {{ $message }}
+                        </div>
+                        @enderror
                 </div>
-                 <div class="col-auto align-self-center mt-5">
+                 <div class="col-auto align-self-center mt-4">
                     <button type="submit" class="btn btn-primary">Balik Nama</button>
                  </div>
             </div>
         </form>
     </div>
+</div>
+
+<div class="container-fluid bg-dakr mt-2">
+  <div class="card-body">
+    <table class="table row-bordered" style="width: 100%" id="tablePrint">
+      <thead>
+        <tr class="table-secondary">
+          <th>No</th>
+          <th>No Polisi</th>
+          <th>Pemilik</th>
+          <th>Nama Pegawai</th>
+          <th class="text-center">Tanggal Pendataan</th>
+          <th>Status</th>
+        </tr>
+        <tbody>
+          @foreach($balikNama as $bn)
+            <tr>
+               <td>{{ $loop->iteration }}</td>
+               <td>{{ $bn->no_polisi }}</td>
+               <td>{{ $bn->pemilik }}</td>
+               <td>{{ $bn->nama_user }}</td>
+               <td class="text-center">{{ $bn->tgl_pendataan }}</td>
+               <td>{{ $bn->status }}</td>
+              </tr>
+            @endforeach
+        </tbody>
+      </thead>
+    </table>
+  </div>
 </div>
 
 

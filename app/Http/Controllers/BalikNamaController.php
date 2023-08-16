@@ -13,9 +13,13 @@ class BalikNamaController extends Controller
     public function index()
     {
         $noPolisi = NopolLuar::select('no_polisi')->get();
+        $idNoPolisi = NopolLuar::select('id')->get();
+        $balikNama = NopolLuar::where('status', 'Sudah Balik Nama')->get();
         return view('dashboard.balikNama', [
             'tittle' => 'Balik Nama',
-            'noPolisi' => $noPolisi
+            'noPolisi' => $noPolisi,
+            'balikNama' => $balikNama,
+            'idNoPolisi' => $idNoPolisi
         ]);
     }
 
@@ -56,7 +60,14 @@ class BalikNamaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validation = $request->validate(
+            [
+                'status' => 'required'
+            ],
+        );
+        $status = NopolLuar::where('no_polisi', $request->no_polisi)->update($validation);
+        session()->flash('successBalikNama', 'Status berhasil diperbaruhi!');
+        return redirect('/dashboard/balik-nama');
     }
 
     /**

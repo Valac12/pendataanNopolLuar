@@ -90,7 +90,7 @@
 
     {{-- Select 2 --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script> --}}
     
     <!-- Main File-->
     <script src="{{ asset('js/front.js') }}"></script>
@@ -182,9 +182,13 @@
       <script>
         $(document).ready(function() {
           $('#SelectNopol').select2({
-            theme: 'bootstrap-5'
+            theme: 'bootstrap-5',
+            width: 'resolve'
           });
-          $('#SelectNopol2').select2();
+          $('#SelectStatus').select2({
+            theme: 'bootstrap-5',
+             width: 'resolve'
+          });
       });
       </script>
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
