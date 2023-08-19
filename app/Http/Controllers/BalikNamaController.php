@@ -60,12 +60,15 @@ class BalikNamaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validation = $request->validate(
-            [
-                'status' => 'required'
-            ],
-        );
-        $status = NopolLuar::where('no_polisi', $request->no_polisi)->update($validation);
+        $cek = NopolLuar::all();
+        $cekValue = $cek->where('no_polisi', $request->no_polisi)->first();
+        $cek2 = $cekValue->status;
+        // dd($cek2);
+        if ($cek2 == 'Sudah Balik Nama') {
+            session()->flash('faillBalikNama', 'Status Plat ' . $request->no_polisi . ' telah diperbaruhi sebelumnya!');
+            return redirect('/dashboard/balik-nama');
+        }
+        $status = NopolLuar::where('no_polisi', $request->no_polisi)->update(['status' => $request->status]);
         session()->flash('successBalikNama', 'Status berhasil diperbaruhi!');
         return redirect('/dashboard/balik-nama');
     }

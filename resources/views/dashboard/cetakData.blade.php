@@ -48,6 +48,8 @@
           <th>No Polisi</th>
           <th>Warna Plat</th>
           <th>Pemilik</th>
+          <th>No Telp</th>
+          <th>Tipe Kendaraan</th>
           <th>Samsat Asal</th>
           <th>Asal Kendaraan</th>
           <th>Alamat Stnk</th>
@@ -63,6 +65,8 @@
                <td>{{ $npl->no_polisi }}</td>
                <td>{{ $npl->kodePlat->warna_plat }}</td>
                <td>{{ $npl->pemilik }}</td>
+               <td>{{ $npl->no_telp }}</td>
+               <td>{{ $npl->tipe_kendaraan }}</td>
                <td>{{ $npl->samsat_asal }}</td>
                <td>{{ $npl->asal_kendaraan }}</td>
                <td>{{ $npl->alamat_sesuai_stnk }}</td>

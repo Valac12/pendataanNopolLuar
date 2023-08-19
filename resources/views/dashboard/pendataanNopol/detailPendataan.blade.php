@@ -75,12 +75,20 @@
               <input class="form-control" readonly id="AlamatStnk" value="{{ $Fid->alamat_sesuai_stnk }}">
             </div>
             <div class="col-4 p-2">
+              <label for="tipeKendaraan" class="form-label fw-bold">Tipe Kendaraan</label>
+              <input class="form-control" readonly id="tipeKendaraan" value="{{ $Fid->tipe_kendaraan }}">
+            </div>
+            <div class="col-4 p-2">
               <label for="Pemilik" class="form-label fw-bold">Pemilik</label>
               <input class="form-control" readonly id="Pemilik" value="{{ $Fid->pemilik }}">
             </div>
             <div class="col-4 p-2">
+              <label for="NoTelp" class="form-label fw-bold">No Telp</label>
+              <input class="form-control" readonly id="NoTelp" value="{{ $Fid->no_telp }}">
+            </div>
+            <div class="col-4 p-2">
               <label for="IdUserPen" class="form-label fw-bold">Id User Pendataan</label>
-              <input class="form-control" readonly id="IdUserPen" value="{{ $Fid->id_user_pendataan }}">
+              <input class="form-control" readonly id="IdUserPen" value="{{ $Fid->User->nama_level }}">
             </div>
             <div class="col-4 p-2">
               <label for="NamaUser" class="form-label fw-bold">Nama User</label>

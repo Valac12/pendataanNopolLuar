@@ -48,4 +48,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function NopolLuar()
+    {
+        return $this->hasMany(NopolLuar::class, 'nama_level');
+    }
 }

@@ -15,7 +15,9 @@ class NopolLuar extends Model
         'samsat_asal',
         'asal_kendaraan',
         'alamat_sesuai_stnk',
+        'tipe_kendaraan',
         'pemilik',
+        'no_telp',
         'gambar',
         'id_user_pendataan',
         'nama_user',
@@ -24,9 +26,12 @@ class NopolLuar extends Model
         'latitude',
         'longitude',
     ];
-     public function kodePlat()
-     {
+    public function kodePlat()
+    {
         return $this->belongsTo(KodePlat::class, 'kd_plat');
-     }
-
+    }
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'id_user_pendataan');
+    }
 }

@@ -95,12 +95,66 @@
                 </div>
             </div>
         </div>
+
+         <div class="col-3">
+            <div class="mb-3">
+                <label for="TipeKendaraan" class="col-sm-4 col-form-label">Tipe Kendaraan</label>
+                <div class="col-sm-10">
+                  <select class="form-select @error('tipe_kendaraan') is-invalid @enderror" name="tipe_kendaraan" aria-label="select example" required>
+                    <option value="{{ $Ebi->tipe_kendaraan }}">{{ $Ebi->tipe_kendaraan }}</option>
+                    <option value="Mobil">Mobil</option>
+                    <option value="Motor">Motor</option>
+                    <option value="Truck">Truck</option>
+                    <option value="Bus">Bus</option>
+                  </select>
+                @error('asal_kendaraan')
+                <div class="invalid-feedback ">
+                  {{ $message }}
+                </div>
+                @enderror
+                </div>
+            </div>
+        </div>
+
         <div class="col-3">
             <div class="mb-3">
                 <label for="pemilik" class="col-sm-4 col-form-label">Pemilik</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control @error('pemilik') is-invalid @enderror" name="pemilik" id="pemilik" value ="{{ old('pemilik', $Ebi->pemilik) }}"  placeholder="santianoJoe" required>
                 @error('pemilik')
+                <div class="invalid-feedback ">
+                  {{ $message }}
+                </div>
+                @enderror
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-3">
+            <div class="mb-3">
+                <label for="no_telp" class="col-sm-4 col-form-label">No Telp</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" id="no_telp" value ="{{ old('no_telp', $Ebi->no_telp) }}"  placeholder="santianoJoe" required>
+                @error('no_telp')
+                <div class="invalid-feedback ">
+                  {{ $message }}
+                </div>
+                @enderror
+                </div>
+            </div>
+        </div>
+
+          <div class="col-3 ">
+            <div class="mb-3">
+               <label for="Gambar" class="col-sm-6 col-form-label">Gambar</label>
+                <div class="col-sm-11">
+                @if($Ebi->gambar)
+                <img class="edit-preview img-fluid my-2 col-sm-5" src="{{ asset('storage/' . $Ebi->gambar) }}">
+                @else
+                <img class="edit-preview img-fluid my-2 col-sm-5">
+                @endif
+                <input type="file" class="form-control  @error('gambar') is-invalid @enderror" id="EditGambar" name="gambar" aria-label="file example" onchange="previewEdit()">
+                @error('gambar')
                 <div class="invalid-feedback ">
                   {{ $message }}
                 </div>
@@ -136,30 +190,11 @@
             </div>
         </div>
 
-        <div class="col-3 ">
-            <div class="mb-3">
-               <label for="Gambar" class="col-sm-6 col-form-label">Gambar</label>
-                <div class="col-sm-11">
-                @if($Ebi->gambar)
-                <img class="edit-preview img-fluid my-2 col-sm-5" src="{{ asset('storage/' . $Ebi->gambar) }}">
-                @else
-                <img class="edit-preview img-fluid my-2 col-sm-5">
-                @endif
-                <input type="file" class="form-control  @error('gambar') is-invalid @enderror" id="EditGambar" name="gambar" aria-label="file example" onchange="previewEdit()">
-                @error('gambar')
-                <div class="invalid-feedback ">
-                  {{ $message }}
-                </div>
-                @enderror
-                </div>
-            </div>
-        </div>
-
         <div class="col-3">
             <div class="mb-3">
                 <label for="NamaUser" class="col-sm-6 col-form-label">Nama Pegawai</label>
                 <div class="col-sm-10">
-                <input type="text" class="form-control" name="nama_user" id="NamaUser" value="{{ auth()->user()->nama }}" readonly>
+                <input type="text" class="form-control" name="nama_user" id="NamaUser" value="{{ $Ebi->nama_user }}" readonly>
                 @error('nama_user')
                 <div class="invalid-feedback ">
                   {{ $message }}
@@ -173,7 +208,7 @@
             <div class="mb-3">
                 <label for="TglPendataan" class="col-sm-8 col-form-label">Tanggal Pendataan</label>
                 <div class="col-sm-10">
-                <input type="text" class="form-control" name="tgl_pendataan" id="TglPendataan" value="{{ $dateNow }}" readonly>
+                <input type="text" class="form-control" name="tgl_pendataan" id="TglPendataan" value="{{ $Ebi->tgl_pendataan }}" readonly>
                 @error('tgl_pendataan')
                 <div class="invalid-feedback ">
                   {{ $message }}

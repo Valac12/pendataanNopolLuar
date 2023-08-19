@@ -34,6 +34,14 @@
               </div>
             </div>
             @endif
+            @if(session()->has('faillBalikNama'))
+            <div class="container-fluid py-2">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('faillBalikNama') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+            @endif
 
             <div class="row justify-content-md-center g-3 d-flex">
                 <div class="col-auto">
@@ -62,7 +70,7 @@
                         @enderror
                 </div>
                  <div class="col-auto align-self-center mt-4">
-                    <button type="submit" class="btn btn-primary">Balik Nama</button>
+                    <button type="submit" class="btn btn-primary" onclick="return confirm('Yakin Balik Nama ?')">Balik Nama</button>
                  </div>
             </div>
         </form>
@@ -79,7 +87,7 @@
           <th>Pemilik</th>
           <th>Nama Pegawai</th>
           <th class="text-center">Tanggal Pendataan</th>
-          <th>Status</th>
+          <th >Status</th>
         </tr>
         <tbody>
           @foreach($balikNama as $bn)
@@ -89,7 +97,7 @@
                <td>{{ $bn->pemilik }}</td>
                <td>{{ $bn->nama_user }}</td>
                <td class="text-center">{{ $bn->tgl_pendataan }}</td>
-               <td>{{ $bn->status }}</td>
+               <td class="badge bg-success mt-2">{{ $bn->status }}</td>
               </tr>
             @endforeach
         </tbody>
