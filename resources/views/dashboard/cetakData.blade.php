@@ -55,6 +55,7 @@
           <th>Alamat Stnk</th>
           <th>Latitude</th>
           <th>Longitude</th>
+          <th>status</th>
           <th>Nama Pegawai</th>
           <th class="text-center">Tanggal Pendataan</th>
         </tr>
@@ -72,6 +73,7 @@
                <td>{{ $npl->alamat_sesuai_stnk }}</td>
                <td>{{ $npl->latitude }}</td>
                <td>{{ $npl->longitude }}</td>
+               <td>{{ $npl->status }}</td>
                <td>{{ $npl->nama_user }}</td>
                <td class="text-center">{{ $npl->tgl_pendataan }}</td>
               </tr>

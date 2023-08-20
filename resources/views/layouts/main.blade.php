@@ -126,21 +126,21 @@
       var table = $('#example').DataTable( {
           lengthChange: false,
           responsive: true,
-          dom: 'Bfrtip',
-          buttons: [
-            {
-            extend: 'copy',
-            text: 'Copy to clipboard'
-            },
-            {
-              extend: 'print',
-              filename: 'Report',
-              title: 'Bappenda',
-              messageTop: 'Badan Pendapatan Provinsi Jayapura'
-            },
-            'excel',
-            'pdf',
-            ]
+          // dom: 'Bfrtip',
+          // buttons: [
+          //   {
+          //   extend: 'copy',
+          //   text: 'Copy to clipboard'
+          //   },
+          //   {
+          //     extend: 'print',
+          //     filename: 'Report',
+          //     title: 'Bappenda',
+          //     messageTop: 'Badan Pendapatan Provinsi Jayapura'
+          //   },
+          //   'excel',
+          //   'pdf',
+          //   ]
           });
           table.buttons().container()
          .appendTo( '#example_wrapper .col-md-6:eq(0)' );  
@@ -167,7 +167,7 @@
          }
         ],
         columnDefs: [ {
-            targets: [-3,-4,-5,-6,-7],
+            targets: [-4,-5,-6,-7,-8],
             visible: false
         } 
         ],

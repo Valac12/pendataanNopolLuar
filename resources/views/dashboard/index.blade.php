@@ -38,12 +38,12 @@
                 </svg>
               </div>
               <div class="mx-3">
-                <h6 class="h4 fw-light text-gray-600 mb-3">Work<br>Orders</h6>
+                <h6 class="h4 fw-light text-gray-600 mb-3">Nomor Polisi Luar</h6>
                 <div class="progress" style="height: 4px">
-                  <div class="progress-bar bg-red" role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-red" role="progressbar" style="width: {{ $nopol }}%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
-              <div class="number"><strong class="text-lg">70</strong></div>
+              <div class="number"><strong class="text-lg">{{ $nopol }}</strong></div>
             </div>
           </div>
           <!-- Item -->
@@ -85,7 +85,7 @@
     </div>
   </div>
 </section>
-<!-- Dashboard Header Section    -->
+{{-- <!-- Dashboard Header Section    -->
 <section class="pb-0">
   <div class="container-fluid">
     <div class="row align-items-stretch">
@@ -143,110 +143,5 @@
       </div>
     </div>
   </div>
-</section>
-<!-- Projects Section-->
-<section class="pb-0">
-  <div class="container-fluid">
-    <!-- Project-->
-    <div class="card mb-3">
-      <div class="card-body p-3">
-        <div class="row align-items-center gx-lg-5 gy-3">
-          <div class="col-lg-6 border-lg-end">
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center"><img class="img-fluid shadow-sm" src="img/project-1.jpg" alt="..." width="50">
-                <div class="ms-3">
-                  <h3 class="h4 text-gray-700 mb-0">Project Title</h3><small class="text-gray-500">Lorem Ipsum Dolor</small>
-                </div>
-              </div><span class="text-sm text-gray-600 d-none d-sm-block">Today at 4:24 AM</span>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="d-flex align-items-center">
-              <p class="d-flex mb-0 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-clock me-1"></i>12:00 PM</p>
-              <p class="d-flex mb-0 mx-3 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-comment me-1"></i>20</p>
-              <div class="progress w-100" style="height: 5px; max-width: 15rem">
-                <div class="progress-bar bg-red" role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Project-->
-    <div class="card mb-3">
-      <div class="card-body p-3">
-        <div class="row align-items-center gx-lg-5 gy-3">
-          <div class="col-lg-6 border-lg-end">
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center"><img class="img-fluid shadow-sm" src="img/project-2.jpg" alt="..." width="50">
-                <div class="ms-3">
-                  <h3 class="h4 text-gray-700 mb-0">Project Title</h3><small class="text-gray-500">Lorem Ipsum Dolor</small>
-                </div>
-              </div><span class="text-sm text-gray-600 d-none d-sm-block">Today at 4:24 AM</span>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="d-flex align-items-center">
-              <p class="d-flex mb-0 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-clock me-1"></i>12:00 PM</p>
-              <p class="d-flex mb-0 mx-3 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-comment me-1"></i>20</p>
-              <div class="progress w-100" style="height: 5px; max-width: 15rem">
-                <div class="progress-bar bg-green" role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Project-->
-    <div class="card mb-3">
-      <div class="card-body p-3">
-        <div class="row align-items-center gx-lg-5 gy-3">
-          <div class="col-lg-6 border-lg-end">
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center"><img class="img-fluid shadow-sm" src="img/project-3.jpg" alt="..." width="50">
-                <div class="ms-3">
-                  <h3 class="h4 text-gray-700 mb-0">Project Title</h3><small class="text-gray-500">Lorem Ipsum Dolor</small>
-                </div>
-              </div><span class="text-sm text-gray-600 d-none d-sm-block">Today at 4:24 AM</span>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="d-flex align-items-center">
-              <p class="d-flex mb-0 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-clock me-1"></i>12:00 PM</p>
-              <p class="d-flex mb-0 mx-3 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-comment me-1"></i>20</p>
-              <div class="progress w-100" style="height: 5px; max-width: 15rem">
-                <div class="progress-bar bg-violet" role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Project-->
-    <div class="card mb-0">
-      <div class="card-body p-3">
-        <div class="row align-items-center gx-lg-5 gy-3">
-          <div class="col-lg-6 border-lg-end">
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center"><img class="img-fluid shadow-sm" src="img/project-4.jpg" alt="..." width="50">
-                <div class="ms-3">
-                  <h3 class="h4 text-gray-700 mb-0">Project Title</h3><small class="text-gray-500">Lorem Ipsum Dolor</small>
-                </div>
-              </div><span class="text-sm text-gray-600 d-none d-sm-block">Today at 4:24 AM</span>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="d-flex align-items-center">
-              <p class="d-flex mb-0 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-clock me-1"></i>12:00 PM</p>
-              <p class="d-flex mb-0 mx-3 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-comment me-1"></i>20</p>
-              <div class="progress w-100" style="height: 5px; max-width: 15rem">
-                <div class="progress-bar bg-orange" role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</section> --}}
 @endsection

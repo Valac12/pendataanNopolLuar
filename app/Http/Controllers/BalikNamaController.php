@@ -63,8 +63,8 @@ class BalikNamaController extends Controller
         $cek = NopolLuar::all();
         $cekValue = $cek->where('no_polisi', $request->no_polisi)->first();
         $cek2 = $cekValue->status;
-        // dd($cek2);
-        if ($cek2 == 'Sudah Balik Nama') {
+        // dd($request->status);
+        if ($request->status == $cek2) {
             session()->flash('faillBalikNama', 'Status Plat ' . $request->no_polisi . ' telah diperbaruhi sebelumnya!');
             return redirect('/dashboard/balik-nama');
         }
