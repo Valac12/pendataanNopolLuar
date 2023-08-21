@@ -230,19 +230,8 @@
           @enderror
         </div>
       </div>
-
-      <div class="mb-3 row">
-        <label for="idUserPendataan" class="col-sm-2 col-form-label">Id User</label>
-        <div class="col-sm-10">
-        <input type="text" class="form-control" name="id_user_pendataan" id="idUserPendataan" value="{{ auth()->user()->level }}" readonly>
-        </div>
-      </div>  
-      <div class="mb-3 row">
-        <label for="NamaUser" class="col-sm-2 col-form-label">Nama Pegawai</label>
-        <div class="col-sm-10">
-        <input type="text" class="form-control" name="nama_user" id="NamaUser" value="{{ auth()->user()->nama }}" readonly>
-        </div>
-    </div>
+        <input type="hidden" class="form-control" name="id_user_pendataan" id="idUserPendataan" value="{{ auth()->user()->level }}" readonly>  
+        <input type="hidden" class="form-control" name="nama_user" id="NamaUser" value="{{ auth()->user()->nama }}" readonly>
     <div class="mb-3 row">
         <label for="TglPendataan" class="col-sm-2 col-form-label">Tanggal Pendataan</label>
         <div class="col-sm-10">

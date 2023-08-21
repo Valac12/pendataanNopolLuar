@@ -13,7 +13,7 @@
       <div class="card-body">
         <div class="row gx-5 bg-white">
           <!-- Item -->
-          <div class="col-xl-3 col-sm-6 py-4 border-lg-end border-gray-200">
+          <div class="col-xl-3 c  ol-sm-6 py-4 border-lg-end border-gray-200">
             <div class="d-flex align-items-center">
               <div class="icon flex-shrink-0 bg-violet">
                 <svg class="svg-icon svg-icon-sm svg-icon-heavy">
@@ -38,7 +38,7 @@
                 </svg>
               </div>
               <div class="mx-3">
-                <h6 class="h4 fw-light text-gray-600 mb-3">Nomor Polisi Luar</h6>
+                <h6 class="h4 fw-light text-gray-600 mb-3">Nomor Polisi<br> Luar</h6>
                 <div class="progress" style="height: 4px">
                   <div class="progress-bar bg-red" role="progressbar" style="width: {{ $nopol }}%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -55,12 +55,12 @@
                 </svg>
               </div>
               <div class="mx-3">
-                <h6 class="h4 fw-light text-gray-600 mb-3">New<br>Invoices</h6>
+                <h6 class="h4 fw-light text-gray-600 mb-3">Nopol Sudah<br>Balik Nama</h6>
                 <div class="progress" style="height: 4px">
-                  <div class="progress-bar bg-green" role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-green" role="progressbar" style="width: {{ $nopolStatus1 }}%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
-              <div class="number"><strong class="text-lg">40</strong></div>
+              <div class="number"><strong class="text-lg">{{ $nopolStatus1 }}</strong></div>
             </div>
           </div>
           <!-- Item -->
@@ -72,12 +72,12 @@
                 </svg>
               </div>
               <div class="mx-3">
-                <h6 class="h4 fw-light text-gray-600 mb-3">Open<br>Cases</h6>
+                <h6 class="h4 fw-light text-gray-600 mb-3">Nopol Belum<br>Balik Nama</h6>
                 <div class="progress" style="height: 4px">
-                  <div class="progress-bar bg-orange" role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-orange" role="progressbar" style="width: {{ $nopolStatus2 }}%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
-              <div class="number"><strong class="text-lg">50</strong></div>
+              <div class="number"><strong class="text-lg">{{ $nopolStatus2 }}</strong></div>
             </div>
           </div>
         </div>

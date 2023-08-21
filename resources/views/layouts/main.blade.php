@@ -159,6 +159,9 @@
          filename: 'Report',
          title: 'Bappenda',
          messageTop: 'Badan Pendapatan Provinsi Jayapura',
+         exportOptions: {
+            columns: ':visible',
+         },
         },
          {
           text: 'Table Control',

@@ -97,7 +97,7 @@
                <td>{{ $bn->pemilik }}</td>
                <td>{{ $bn->nama_user }}</td>
                <td class="text-center">{{ $bn->tgl_pendataan }}</td>
-               <td class="badge bg-success mt-2">{{ $bn->status }}</td>
+               <td class="badge bg-success mt-1">{{ $bn->status }}</td>
               </tr>
             @endforeach
         </tbody>

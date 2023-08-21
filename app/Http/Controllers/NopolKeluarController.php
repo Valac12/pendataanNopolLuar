@@ -23,7 +23,7 @@ class NopolKeluarController extends Controller
         $dateNow = $dt->toDateString();
         return view('dashboard.pendataanNopol.index', [
             'tittle' => 'Pendataan Nomor Polisi Luar',
-            'Nopol' => NopolLuar::all(),
+            'Nopol' => NopolLuar::all()->sortByDesc('created_at'),
             'kodePlat' => $kp,
             'user' => $us,
             'dateNow' => $dateNow,
