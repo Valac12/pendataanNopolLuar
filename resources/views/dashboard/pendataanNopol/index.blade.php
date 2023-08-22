@@ -63,7 +63,7 @@
     <button class="btn btn-primary btn-md border-3" type="button" title="Tambah Data" data-bs-toggle="modal" data-bs-target="#modalNopol">+{{ $btn_add }}</button>
   </div>
   <div class="card-body py-2">
-  <table id="example" class="row-border" style="width:100%">
+  <table id="example" class="row-border display nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>No</th>
@@ -88,7 +88,7 @@
                <td>{{ $npl->no_telp }}</td>
                <td>{{ $npl->tgl_pendataan }}</td>
                <td>{{ $npl->nama_user }}</td>
-              <td class="d-flex justify-content-center">
+               <td>
                   <a class="badge bg-success border-0 m-1" href="/pendataanNopol/{{ $npl->id }}">
                         <svg class="svg-icon svg-icon-sm svg-icon-heavy">
                             <use xlink:href="#eye-1"> </use>
